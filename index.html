@@ -8,37 +8,62 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="clock">
             <div class="bar hourBar"></div>
             <div class="clockCenter"></div>
             <div class="bar minuteBar"></div>
+            <ul class="day">
+                <li class="am active">AM</li>
+                <li class="pm ">PM</li>
+            </ul>
         </div>
     </div>
 </body>
-
 <script>
-    var clock = document.getElementsByClassName("clock")[0];
+var clock = document.getElementsByClassName("clock")[0];
+
+createClock(clock);
+function createClock(selector) {
     for (var i = 0; i < 60; i++) {
         var tip = document.createElement("div");
         tip.className = "tip ";
 
         // If the tip is an hour
-        if(i % 5 == 0){
-            tip.className +=  "hourTip";
-            var hourText = document.createElement("span");
-            hourText.innerHTML = i / 5; 
-            tip.appendChild(hourText);
-        // Else it's minute
-        }else {
+        if (i % 5 == 0) {
+            tip.className += "hourTip";
+            var hourSpan = document.createElement("span");
 
-            tip.className +=  "minuteTip";
+            // Every 5 tips we get an hour
+            var hour = i / 5;
+            // if the result is 0 return 12
+            var hourText = hour === 0 ? 12 : hour;
+            hourSpan.innerHTML = hourText;
+            hourSpan.style.transform = "rotate(" + (-i * 6) + "deg)"
+            tip.appendChild(hourSpan);
+
+            // Else it's minute
+        } else {
+            tip.className += "minuteTip";
         }
 
 
-        tip.style.transform = "rotate("+( i * 6 ) +"deg)";
-        clock.appendChild(tip);
+        tip.style.transform = "rotate(" + (i * 6) + "deg)";
+        selector.appendChild(tip);
     };
+
+    var pm = document.getElementsByClassName('pm')[0]; 
+    var am = document.getElementsByClassName('am')[0]; 
+    pm.onclick = function(){
+        pm.className = "pm active";
+        am.className = "am";
+    };
+    am.onclick = function(){
+        am.className = "am active";
+        pm.className = "pm";
+    };
+}
 
 
 </script>

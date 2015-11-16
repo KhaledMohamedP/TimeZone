@@ -1,18 +1,17 @@
 .container{
-	width: 300px; 
-	height: 300px;  
-	padding: 2px;
-	background: #607D8B; 
+	background: #607D8B;
+	width: 300px;
+	height: 306px;    
 }
 
 .clock{
 	border: 3px solid #9E9E9E;
-	border-radius: 50%;
 	height: 200px;
 	position: relative;
+	background: #f2f2f2;
+	margin: 32px auto;
 	width: 200px;
-	margin: 0 auto;
-	background: #f2f2f2; 
+	border-radius: 50%; 
 }
 
 .tip{  
@@ -26,10 +25,9 @@
 	width: 4px;
 }
 .hourTip span{ 
+	top:10px;
 	position: absolute;
-	transform: rotate(3deg);
-	left: -1px;
-	top: 12px; 
+	left: -2px;
 }
 .minuteTip{
 	width: 1px;
@@ -81,4 +79,27 @@
 
 .twoMin{
 	transform: rotate(6deg);
+}
+.day {
+	position: absolute; 
+	background: white;
+	display: inline-block;
+	left: 100px;
+	list-style-type: none;
+	top: 220px;
+	border-radius: 20px;
+	padding: 0;
+	margin: 0; 
+}
+.day li{
+	display: inline;
+	padding: 0 5px;
+	cursor: pointer; 
+}
+
+.day li.active{
+	background: #000; 
+	border-radius: 20px;
+	padding: 0 10px; 
+	color: #fff; 
 }
