@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Time Zone</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="bar hourBar"></div>
+            <div class="clockCenter"></div>
+            <div class="bar minuteBar"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var clock = document.getElementsByClassName("clock")[0];
+    for (var i = 0; i < 60; i++) {
+        var tip = document.createElement("div");
+        tip.className = "tip ";
+
+        // If the tip is an hour
+        if(i % 5 == 0){
+            tip.className +=  "hourTip";
+            var hourText = document.createElement("span");
+            hourText.innerHTML = i / 5; 
+            tip.appendChild(hourText);
+        // Else it's minute
+        }else {
+
+            tip.className +=  "minuteTip";
+        }
+
+
+        tip.style.transform = "rotate("+( i * 6 ) +"deg)";
+        clock.appendChild(tip);
+    };
+
+
+</script>
+
+</html>
+<!--    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+    <input type="time" />
+    <input type="date" />
+    <button>Click</button>
+    <script>
+    var button = document.getElementsByTagName('button')[0];
+    var selectedTime, selectedDate, date;
+    button.onclick = function() {
+
+        selectedTime = document.getElementsByTagName('input')[0].value;
+        selectedDate = document.getElementsByTagName('input')[1].value;
+        date = new Date(selectedTime + selectedDate);
+        var mdate = moment(date);
+        var result = mdate.tz("America/New_York").format("h:mm a");
+        console.log(result)
+    }
+    </script> -->

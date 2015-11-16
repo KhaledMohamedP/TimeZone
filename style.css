@@ -1,0 +1,84 @@
+.container{
+	width: 300px; 
+	height: 300px;  
+	padding: 2px;
+	background: #607D8B; 
+}
+
+.clock{
+	border: 3px solid #9E9E9E;
+	border-radius: 50%;
+	height: 200px;
+	position: relative;
+	width: 200px;
+	margin: 0 auto;
+	background: #f2f2f2; 
+}
+
+.tip{  
+	position: absolute;
+	transform-origin: 50% 100px;
+	margin: 0 98px 200px;
+	background: black;
+}
+.hourTip{	
+	height: 8px;
+	width: 4px;
+}
+.hourTip span{ 
+	position: absolute;
+	transform: rotate(3deg);
+	left: -1px;
+	top: 12px; 
+}
+.minuteTip{
+	width: 1px;
+	height: 3px;
+
+}
+
+.bar {
+	position: absolute;
+	background: black;
+	transform-origin: 50% bottom;
+}
+.hourBar {
+	transform: rotate(30deg);
+	margin: 43px 98px 100px;
+	height: 56px;
+	background: yellow;
+	z-index: 100; 
+	width: 4px;
+	
+}
+
+
+.minuteBar {      
+	transform: rotate(0deg);
+	background: green;
+	height: 60px;
+	margin: 35px 98px 100px;
+	width: 2px;
+	
+}
+
+.clockCenter { 
+	height: 10px; 
+	position: absolute;
+	background: #FF6633;
+	border-radius: 50%;
+	margin: calc(50% - 5px);
+	width: 10px;
+	z-index: 200;;  
+}
+
+.one {
+	transform: rotate(30deg);
+}
+.tweleve{
+	transform: rotate(0deg);
+}
+
+.twoMin{
+	transform: rotate(6deg);
+}
