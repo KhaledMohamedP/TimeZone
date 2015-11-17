@@ -1,73 +1,73 @@
 .container{
-	background: #607D8B;
-	width: 300px;
-	height: 306px;    
+	background: #607D8B;    
 }
 
 .clock{
-	border: 3px solid #9E9E9E;
-	height: 200px;
-	position: relative;
 	background: #f2f2f2;
-	margin: 32px auto;
 	width: 200px;
+	position: relative;
+	height: 200px;
+	border: 3px solid #9E9E9E;
+	margin: 32px auto;
+	box-shadow: 0px 1px 43px black;
 	border-radius: 50%; 
 }
 
 .tip{  
 	position: absolute;
+	background: black;
 	transform-origin: 50% 100px;
 	margin: 0 98px 200px;
-	background: black;
 }
 .hourTip{	
 	height: 8px;
 	width: 4px;
 }
 .hourTip span{ 
-	top:10px;
 	position: absolute;
-	left: -2px;
+	top: 10px;
+	padding: -1px;
+	left: -3px;;
 }
 .minuteTip{
-	width: 1px;
 	height: 3px;
+	width: 1px;
 
 }
 
 .bar {
-	position: absolute;
-	background: black;
 	transform-origin: 50% bottom;
+	background: rgb(3, 169, 244);
+	position: absolute;
+	cursor: grab;
+	cursor: -webkit-grab; 
 }
 .hourBar {
-	transform: rotate(30deg);
-	margin: 43px 98px 100px;
-	height: 56px;
-	background: yellow;
-	z-index: 100; 
-	width: 4px;
+	/*z-index: 100; */
+	width: 6px;
+	margin: 39px 98px 100px;
+	transform: rotate(90deg);
+	height: 62px;
 	
 }
 
 
 .minuteBar {      
 	transform: rotate(0deg);
-	background: green;
-	height: 60px;
-	margin: 35px 98px 100px;
-	width: 2px;
+	height: 64px;
+	width: 3px;
+	margin: 35px 99px 100px;
 	
 }
 
 .clockCenter { 
 	height: 10px; 
 	position: absolute;
-	background: #FF6633;
-	border-radius: 50%;
-	margin: calc(50% - 5px);
+	background: #607D8B;
+	margin: calc(50% - 4px);
 	width: 10px;
-	z-index: 200;;  
+	z-index: 1;
+	border-radius: 50%;;  
 }
 
 .one {
@@ -80,26 +80,50 @@
 .twoMin{
 	transform: rotate(6deg);
 }
-.day {
-	position: absolute; 
-	background: white;
-	display: inline-block;
-	left: 100px;
+
+
+/* Controller */
+
+.day { 
+	margin: 0;
 	list-style-type: none;
-	top: 220px;
-	border-radius: 20px;
-	padding: 0;
-	margin: 0; 
+	font-size: 12px;
 }
 .day li{
-	display: inline;
-	padding: 0 5px;
-	cursor: pointer; 
+	cursor: pointer;
+	display: inline-block;
+	padding: 2.5px 5px; 
 }
 
-.day li.active{
-	background: #000; 
-	border-radius: 20px;
-	padding: 0 10px; 
-	color: #fff; 
+.day li.active{  
+	color: #fff;
+	background: #009688;; 
+}
+
+.clockInput {
+	float: left;  
+}
+
+
+.hourInput { 
+	outline: 9;
+	float: left;
+	width: 12px; 
+}
+
+.minuteInput {
+	width: 15px; 
+}
+.open {
+	background: yellow; 
+}
+
+.controller {
+	top: 88px;
+	left: 205px;
+	position: absolute;
+	width: 120px;
+	padding: 1px;
+	background: #ccc; 
+
 }

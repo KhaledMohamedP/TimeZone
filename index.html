@@ -8,16 +8,23 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="clock">
             <div class="bar hourBar"></div>
             <div class="clockCenter"></div>
             <div class="bar minuteBar"></div>
-            <ul class="day">
-                <li class="am active">AM</li>
-                <li class="pm ">PM</li>
-            </ul>
+            <div class="controller">
+                <!-- Input materials -->
+                <div class="clockInput">
+                    <input type="text" class="hourInput">
+                    <input type="text" class="minuteInput">
+                </div>
+                <ul class="day">
+                    <li class="am active">AM</li>
+                    <li class="pm ">PM</li>
+                    <li class="open">></li>
+                </ul>    
+            </div>
         </div>
     </div>
 </body>
@@ -25,6 +32,7 @@
 var clock = document.getElementsByClassName("clock")[0];
 
 createClock(clock);
+
 function createClock(selector) {
     for (var i = 0; i < 60; i++) {
         var tip = document.createElement("div");
@@ -53,37 +61,57 @@ function createClock(selector) {
         selector.appendChild(tip);
     };
 
-    var pm = document.getElementsByClassName('pm')[0]; 
-    var am = document.getElementsByClassName('am')[0]; 
-    pm.onclick = function(){
+    // Day: pm/am
+    var pm = document.getElementsByClassName('pm')[0];
+    var am = document.getElementsByClassName('am')[0];
+    pm.onclick = function() {
         pm.className = "pm active";
         am.className = "am";
     };
-    am.onclick = function(){
+    am.onclick = function() {
         am.className = "am active";
         pm.className = "pm";
     };
+
+
+    var hourBar = document.getElementsByClassName('hourBar')[0];
+    var minuteBar = document.getElementsByClassName('minuteBar')[0];
+
+
+
+    //  Hour input work 
+    var hourInput = document.getElementsByClassName('hourInput')[0];
+    var minuteInput = document.getElementsByClassName('minuteInput')[0];
+
+    hourInput.onkeyup = function(e) {
+        var degree = e.target.value * 30;
+        hourBar.style.transform = "rotate(" + degree + "deg)";
+    }
+    minuteInput.onkeyup = function(e) {
+        var degree = minuteInput.value * 6;
+        minuteBar.style.transform = "rotate(" + degree + "deg)";
+    }
+
 }
-
-
 </script>
 
 </html>
-<!--    <script src="http://momentjs.com/downloads/moment.min.js"></script>
-    <script src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
-    <input type="time" />
-    <input type="date" />
-    <button>Click</button>
-    <script>
-    var button = document.getElementsByTagName('button')[0];
-    var selectedTime, selectedDate, date;
-    button.onclick = function() {
 
-        selectedTime = document.getElementsByTagName('input')[0].value;
-        selectedDate = document.getElementsByTagName('input')[1].value;
-        date = new Date(selectedTime + selectedDate);
-        var mdate = moment(date);
-        var result = mdate.tz("America/New_York").format("h:mm a");
-        console.log(result)
-    }
-    </script> -->
+
+
+<!--  Make clock bar moves - TODO 
+    // hourBar.onmousedown = function(e){
+
+    //     var x = e.pageX - clock.offsetLeft;
+    //     var y = e.pageY - clock.offsetTop;
+    //     var r = x / 2; 
+    //     degrees = Math.atan2(y,  x) / Math.PI * 180;
+
+    //     // degrees = Math.atan( - x / y ) * 180 / Math.PI,
+
+    //     // this.style.transform = "rotate("+ degrees +"deg)";
+    //     console.log("client", degrees, x, y);
+    //     // console.log("screen", e.screenX, e.screenY);
+    //     console.log(e);
+    // }
+    //  -->
