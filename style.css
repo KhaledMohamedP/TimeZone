@@ -1,129 +1,134 @@
 .container{
-	background: #607D8B;    
+  background: #607D8B;
+  margin: 122px;;    
 }
 
 .clock{
-	background: #f2f2f2;
-	width: 200px;
-	position: relative;
-	height: 200px;
-	border: 3px solid #9E9E9E;
-	margin: 32px auto;
-	box-shadow: 0px 1px 43px black;
-	border-radius: 50%; 
+  background: #f2f2f2;
+  width: 200px;
+  position: relative;
+  height: 200px;
+  border: 3px solid #9E9E9E;
+  margin: 32px auto;
+  box-shadow: 0px 1px 43px black;
+  border-radius: 50%; 
 }
 
 .tip{  
-	position: absolute;
-	background: black;
-	transform-origin: 50% 100px;
-	margin: 0 98px 200px;
+  position: absolute;
+  background: black;
+  transform-origin: 50% 100px;
+  margin: 0 98px 200px;
 }
-.hourTip{	
-	height: 8px;
-	width: 4px;
+.hourTip{ 
+  height: 8px;
+  width: 4px;
 }
 .hourTip span{ 
-	position: absolute;
-	top: 10px;
-	padding: -1px;
-	left: -3px;;
+  position: absolute;
+  top: 10px;
+  padding: -1px;
+  left: -3px;;
 }
 .minuteTip{
-	height: 3px;
-	width: 1px;
+  height: 3px;
+  width: 1px;
 
 }
 
 .bar {
-	transform-origin: 50% bottom;
-	background: rgb(3, 169, 244);
-	position: absolute;
-	cursor: grab;
-	cursor: -webkit-grab; 
+  transform-origin: 50% bottom;
+  background: rgb(3, 169, 244);
+  position: absolute;
+  cursor: grab;
+  cursor: -webkit-grab; 
 }
 .hourBar {
-	/*z-index: 100; */
-	width: 6px;
-	margin: 39px 98px 100px;
-	transform: rotate(90deg);
-	height: 62px;
-	
+  /*z-index: 100; */
+  width: 6px;
+  transform: rotate(360deg);
+/*  height: 62px;
+  margin: 39px 98px 100px;
+*/  
+
+  height: 100px;
+  margin: 0px 98px 100px;
+
 }
 
 
 .minuteBar {      
-	transform: rotate(0deg);
-	height: 64px;
-	width: 3px;
-	margin: 35px 99px 100px;
-	
+  transform: rotate(90deg);
+  height: 64px;
+  width: 3px;
+  margin: 35px 99px 100px;
+  
 }
 
 .clockCenter { 
-	height: 10px; 
-	position: absolute;
-	background: #607D8B;
-	margin: calc(50% - 4px);
-	width: 10px;
-	z-index: 1;
-	border-radius: 50%;;  
+  height: 10px; 
+  position: absolute;
+  background: #607D8B;
+  margin: calc(50% - 4px);
+  width: 10px;
+  z-index: 1;
+  border-radius: 50%;;  
 }
 
 .one {
-	transform: rotate(30deg);
+  transform: rotate(30deg);
 }
 .tweleve{
-	transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .twoMin{
-	transform: rotate(6deg);
+  transform: rotate(6deg);
 }
 
 
 /* Controller */
 
 .day { 
-	margin: 0;
-	list-style-type: none;
-	font-size: 12px;
+  margin: 0;
+  list-style-type: none;
+  font-size: 12px;
 }
 .day li{
-	cursor: pointer;
-	display: inline-block;
-	padding: 2.5px 5px; 
+  cursor: pointer;
+  display: inline-block;
+  padding: 2.5px 5px; 
 }
 
 .day li.active{  
-	color: #fff;
-	background: #009688;; 
+  color: #fff;
+  background: #009688;; 
 }
 
 .clockInput {
-	float: left;  
+  float: left;  
 }
 
 
 .hourInput { 
-	outline: 9;
-	float: left;
-	width: 12px; 
+  outline: 9;
+  float: left;
+  width: 12px; 
 }
 
 .minuteInput {
-	width: 15px; 
+  width: 15px; 
 }
 .open {
-	background: yellow; 
+  background: yellow; 
 }
 
 .controller {
-	top: 88px;
-	left: 205px;
-	position: absolute;
-	width: 120px;
-	padding: 1px;
-	background: #ccc; 
+  top: 88px;
+  left: 205px;
+  position: absolute;
+  width: 120px;
+  padding: 1px;
+  background: #ccc; 
 
 }

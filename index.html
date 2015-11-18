@@ -21,9 +21,8 @@
                 </div>
                 <ul class="day">
                     <li class="am active">AM</li>
-                    <li class="pm ">PM</li>
-                    <li class="open">></li>
-                </ul>    
+                    <li class="pm">PM</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -92,13 +91,32 @@ function createClock(selector) {
         minuteBar.style.transform = "rotate(" + degree + "deg)";
     }
 
+
+    // experiment 
+    hourBar.onmousedown = function(e) {
+        hourBar.onmousemove = function(e) {
+            var x = e.pageX - clock.offsetLeft;
+            var y = e.pageY - clock.offsetTop;
+            var middleX = clock.clientWidth / 2;
+            var middleY = clock.clientHeight / 2;
+
+            var cX = x - middleX;
+            var cY = middleY - y;
+            // var degrees = Math.atan2( -x,  y) / Math.PI * 180;
+
+            angle = Math.atan2(cX, cY) * (180 / Math.PI);
+
+            // Convert degree from -+ to 0-360 
+            degrees = angle + Math.ceil(-angle / 360) * 360;
+
+            this.style.transform = "rotate(" + degrees + "deg)";
+        }
+    }
+
 }
 </script>
 
 </html>
-
-
-
 <!--  Make clock bar moves - TODO 
     // hourBar.onmousedown = function(e){
 
