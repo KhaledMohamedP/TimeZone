@@ -1,11 +1,11 @@
 .clockContainer{
   padding: 10px;
-  margin: 5px;
+  margin: 20px;
   width: 310px;
   display: inline-table;
   border-left: 3px solid #607D8B;
   box-shadow: 0px 0px 1px #607D8B;
-  height: 100%;;
+  height: 100%;; 
 }
 
 .clock{
@@ -16,7 +16,7 @@
   border: 3px solid #9E9E9E;
   border-radius: 50%; 
   cursor: -webkit-grab;
-  box-shadow: 0px 0 0px black;; 
+  box-shadow: 0px 0 0px black; 
 }
 
 .tip{  
@@ -33,7 +33,7 @@
   position: absolute;
   top: 10px;
   padding: -1px;
-  left: -3px;;
+  left: -3px;
 }
 .hourTip span::selection{
   background: transparent;
@@ -77,7 +77,7 @@
   width: 10px;
   border-radius: 50%;
   z-index: 1;
-  box-shadow: 0px -1px 0px #000;;  
+  box-shadow: 0px -1px 0px #000;  
 }
 
 .one {
@@ -107,7 +107,7 @@
 
 .day li.active{  
   color: #fff;
-  background: #009688;; 
+  background: #009688; 
 }
 
 .clockInput {
@@ -117,12 +117,12 @@
 
 .hourInput { 
   outline: 9;
-  float: left;
-  width: 12px; 
+  width: 22px;
+  float: left; 
 }
 
 .minuteInput {
-  width: 15px; 
+  width: 25px; 
 }
 .open {
   background: yellow; 
@@ -131,10 +131,11 @@
 .controller {
   top: 10px;
   position: absolute;
-  width: 100px;
+  width: 120px;
   padding: 1px;
   background: #ccc;
-  left: 205px; 
+  left: 185px;
+  box-shadow: 2px 3px 4px black; 
 
 }
 
@@ -154,4 +155,24 @@
   outline: 0; 
   border: 1px solid transparent; 
   cursor: pointer;  
+}
+.close {
+  cursor: pointer;
+  border-radius: 10px;
+  top: -26px;
+  padding: 3px;
+  left: 308px;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.73);
+  background: #607D8B;
+  
+}
+
+
+
+/* Validation styling */
+input:required:invalid, input:focus:invalid {
+  /* insert your own styles for invalid form input */
+  -moz-box-shadow: none;
+  border: 1px solid red; 
 }

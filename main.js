@@ -116,9 +116,11 @@ function createClock(selector) {
     function getDegrees(e) {
         var x = e.pageX - selector.offsetLeft;
         var y = e.pageY - selector.offsetTop;
-        var middleX = selector.clientWidth / 2;
+        var middleX = selector.clientWidth  / 2;
         var middleY = selector.clientHeight / 2;
 
+        console.log(selector.offsetLeft, selector.offsetTop)
+        console.log(e.pageX, e.pageY)
         var cX = x - middleX;
         var cY = middleY - y;
 
