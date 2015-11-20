@@ -31,3 +31,11 @@ so in order to know our axis in the graph from our div property
 6-7 = -1 good 
 
 so we divide the horizantal to 
+
+
+
+------
+getHour 
+0-30 
+5-30
+30 / 30 = 0 

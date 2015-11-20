@@ -1,0 +1,19 @@
+{
+  "name": "timezone",
+  "version": "1.0.0",
+  "description": "Tell the difference between two timezones",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhaledMohamedP/TimeZone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhaledMohamedP/TimeZone/issues"
+  },
+  "homepage": "https://github.com/KhaledMohamedP/TimeZone#readme"
+}
