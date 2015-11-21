@@ -1,16 +1,27 @@
-var clock = document.getElementsByClassName("clock")[0];
-var clock2 = document.getElementsByClassName("clock")[1];
+if (typeof document !== "undefined") {
+    var clockView = document.getElementsByClassName("clockView")[0];
+    // var clock2 = document.getElementsByClassName("clock")[0];
+    // createClock(clock);
+    // createClock(clock2);
+    // 
+    var clockDom = transformStringToDOM(require("./clock-template.html"));
+    var clock = createClock(clockDom);
+    clockView.appendChild(clock);
 
-createClock(clock);
-createClock(clock2);
+    var clockDom = transformStringToDOM(require("./clock-template.html"));
+    var clock = createClock(clockDom);
+    clockView.appendChild(clock);
+}
 
-function createClock(selector) {
+function createClock(clockDom) {
+    var clockDiv = clockDom.getElementsByClassName("clock")[0];
+
     for (var i = 0; i < 60; i++) {
         var tip = document.createElement("div");
         tip.className = "tip ";
 
         // If the tip is an hour
-        if (i % 5 == 0) {
+        if (i % 5 === 0) {
             tip.className += "hourTip";
             var hourSpan = document.createElement("span");
 
@@ -19,7 +30,7 @@ function createClock(selector) {
             // if the result is 0 return 12
             var hourText = hour === 0 ? 12 : hour;
             hourSpan.innerHTML = hourText;
-            hourSpan.style.transform = "rotate(" + (-i * 6) + "deg)"
+            hourSpan.style.transform = "rotate(" + (-i * 6) + "deg)";
             tip.appendChild(hourSpan);
 
             // Else it's minute
@@ -29,12 +40,12 @@ function createClock(selector) {
 
 
         tip.style.transform = "rotate(" + (i * 6) + "deg)";
-        selector.appendChild(tip);
-    };
+        clockDiv.appendChild(tip);
+    }
 
     // Day: pm/am
-    var pm = selector.getElementsByClassName('pm')[0];
-    var am = selector.getElementsByClassName('am')[0];
+    var pm = clockDiv.getElementsByClassName('pm')[0];
+    var am = clockDiv.getElementsByClassName('am')[0];
     pm.onclick = function() {
         pm.className = "pm active";
         am.className = "am";
@@ -45,14 +56,14 @@ function createClock(selector) {
     };
 
 
-    var hourBar = selector.getElementsByClassName('hourBar')[0];
-    var minuteBar = selector.getElementsByClassName('minuteBar')[0];
+    var hourBar = clockDiv.getElementsByClassName('hourBar')[0];
+    var minuteBar = clockDiv.getElementsByClassName('minuteBar')[0];
 
 
 
     //  Hour input work 
-    var hourInput = selector.getElementsByClassName('hourInput')[0];
-    var minuteInput = selector.getElementsByClassName('minuteInput')[0];
+    var hourInput = clockDiv.getElementsByClassName('hourInput')[0];
+    var minuteInput = clockDiv.getElementsByClassName('minuteInput')[0];
 
     hourInput.onkeyup = function(e) {
         var degree = e.target.value * 30;
@@ -66,28 +77,28 @@ function createClock(selector) {
 
     // experiment 
     hourBar.addEventListener("mousedown", function(e) {
-        selector.addEventListener("mousemove", hourClockMouseMove, false);
+        clockDiv.addEventListener("mousemove", hourClockMouseMove, false);
     });
 
     hourBar.addEventListener("touchstart", function(e) {
-        selector.addEventListener("touchmove", hourClockMouseMove, false);
+        clockDiv.addEventListener("touchmove", hourClockMouseMove, false);
     });
 
     // Minutes Events 
     minuteBar.addEventListener("mousedown", function(e) {
-        selector.addEventListener("mousemove", minuteClockMouseMove, false);
+        clockDiv.addEventListener("mousemove", minuteClockMouseMove, false);
     });
     //MinutesBar Mobile 
     minuteBar.addEventListener("touchstart", function(e) {
-        selector.addEventListener("touchmove", minuteClockMouseMove, false);
+        clockDiv.addEventListener("touchmove", minuteClockMouseMove, false);
     });
 
 
-    selector.onclick = function() {
-        selector.removeEventListener("mousemove", hourClockMouseMove,   false);
-        selector.removeEventListener("mousemove", minuteClockMouseMove, false);
-        selector.removeEventListener("touchmove", hourClockMouseMove,   false);
-        selector.removeEventListener("touchmove", minuteClockMouseMove, false);
+    clockDiv.onclick = function() {
+        clockDiv.removeEventListener("mousemove", hourClockMouseMove, false);
+        clockDiv.removeEventListener("mousemove", minuteClockMouseMove, false);
+        clockDiv.removeEventListener("touchmove", hourClockMouseMove, false);
+        clockDiv.removeEventListener("touchmove", minuteClockMouseMove, false);
     };
 
 
@@ -114,13 +125,13 @@ function createClock(selector) {
     }
 
     function getDegrees(e) {
-        var x = e.pageX - selector.offsetLeft;
-        var y = e.pageY - selector.offsetTop;
-        var middleX = selector.clientWidth  / 2;
-        var middleY = selector.clientHeight / 2;
+        var x = e.pageX - clockDiv.offsetLeft;
+        var y = e.pageY - clockDiv.offsetTop;
+        var middleX = clockDiv.clientWidth / 2;
+        var middleY = clockDiv.clientHeight / 2;
 
-        console.log(selector.offsetLeft, selector.offsetTop)
-        console.log(e.pageX, e.pageY)
+        console.log(clockDiv.offsetLeft, clockDiv.offsetTop);
+        console.log(e.pageX, e.pageY);
         var cX = x - middleX;
         var cY = middleY - y;
 
@@ -131,4 +142,13 @@ function createClock(selector) {
 
         return degrees;
     }
+
+    return clockDom; 
+}
+
+
+function transformStringToDOM(str){
+    var elm = document.createElement("div");
+    elm.innerHTML = str;
+    return elm.children[0]; 
 }

@@ -3,8 +3,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: "main.js",
-  output: "bundle.js",
+	context: path.join(__dirname),
+  entry: "./main.js",
+  output: {
+  	filename: "./bundle.js"
+  },
   devtool: 'source-map',
   module: {
     preLoaders: [
