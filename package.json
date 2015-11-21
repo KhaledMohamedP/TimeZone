@@ -4,7 +4,8 @@
   "description": "Tell the difference between two timezones",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --host 0.0.0.0 --port 3000"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,6 @@
   "homepage": "https://github.com/KhaledMohamedP/TimeZone#readme",
   "devDependencies": {
     "css-loader": "^0.23.0",
-    "jade": "^1.11.0",
-    "jade-html-loader": "0.0.3",
     "jshint": "^2.8.0",
     "jshint-loader": "^0.8.3",
     "raw-loader": "^0.5.1",
