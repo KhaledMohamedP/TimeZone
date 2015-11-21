@@ -4,9 +4,9 @@ var webpack = require('webpack');
 
 module.exports = {
 	context: path.join(__dirname),
-  entry: "./main.js",
+  entry: "./src/js/main.js",
   output: {
-  	filename: "./bundle.js"
+  	filename: "./dist/js/bundle.js"
   },
   devtool: 'source-map',
   module: {

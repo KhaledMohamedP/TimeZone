@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/KhaledMohamedP/TimeZone#readme",
   "devDependencies": {
+    "css-loader": "^0.23.0",
     "jade": "^1.11.0",
     "jade-html-loader": "0.0.3",
     "jshint": "^2.8.0",
     "jshint-loader": "^0.8.3",
     "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.0",
     "webpack": "^1.12.8",
     "webpack-dev-server": "^1.12.1"
   }
