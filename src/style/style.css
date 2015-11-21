@@ -178,5 +178,5 @@
 input:required:invalid, input:focus:invalid {
   /* insert your own styles for invalid form input */
   -moz-box-shadow: none;
-  border-bottom: 1px solid red; 
+  border-bottom: 3px solid #CC3366; 
 }

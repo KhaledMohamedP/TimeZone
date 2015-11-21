@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --host 0.0.0.0 --port 3000"
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline --host 0.0.0.0 --port 3000"
   },
   "repository": {
     "type": "git",
