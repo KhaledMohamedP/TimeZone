@@ -105,16 +105,21 @@ function createClock(clockDom) {
         //         // Adjust the hour bar 
         // console.log(degrees);
         // var digit = /\d+/;
-        // var minDegrees = degrees; 
-        // var hrDegrees = hourBar.style.transform; 
+        // var degreesInMinuteBar = degrees; 
+        // var degreesInHourBar = hourBar.style.transform; 
 
-        // // Convert the degree in number 
-        // var hrDegrees = digit.exec(minDegrees);
+        // var hrDegrees = digit.exec(degreesInHourBar)[0];
         // hrDegrees = Number.parseInt(hrDegrees);
 
-        // hrDegrees = (degrees / 360) * 30; 
-        // // hrDegrees = hrDegrees === 0 ? 
-        // hourBar.style.transform = "rotate(" + hrDegrees + "deg)";
+        // console.log(degreesInHourBar,hrDegrees);
+        // var currentHourDegree = Math.floor(hrDegrees / 30) * 30; 
+        // var hourBarPrgress = (degreesInMinuteBar / 360) * 30;
+        // var nextHourDegree = currentHourDegree + hourBarPrgress;  
+        // if(Math.floor(currentHourDegree) === Math.floor(nextHourDegree)){
+        //     currentHourDegree += 30;
+        // }
+        // console.log(nextHourDegree, hourBarPrgress)
+        // hourBar.style.transform = "rotate(" + nextHourDegree + "deg)";
 
     }
 

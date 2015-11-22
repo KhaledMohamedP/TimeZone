@@ -40,7 +40,11 @@ function transformStringToDOM(str) {
 
 // Add orginal clock 
 var now = new Date(); 
+var hours = now.getHours(); 
+var Hours12Format = hours % 12;
+Hours12Format = Hours12Format === 0 ? 12: Hours12Format; 
+// 
 var amAm = (now.hours >= 12) ? "pm" : "am";
-addClockToDom(now.getHours(), now.getMinutes(), amAm, "new york");
+addClockToDom(Hours12Format, now.getMinutes(), amAm, "new york");
 
 module.exports = addClockToDom; 
