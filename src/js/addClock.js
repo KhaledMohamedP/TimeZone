@@ -2,10 +2,9 @@ var createClock = require("./createClock.js");
 var clockView = document.getElementsByClassName("clockView")[0];
 
 
-function addClockToDom(hour, minute, pmAm, city){
+function addClockToDom(hour, minute, pmAm, city, indexId){
   var clockDom = transformStringToDOM(require("../template/clock-template.html"));
   var clock = createClock(clockDom);
-
   // Setting 
     // hour
   var hourInput = clock.getElementsByClassName("hourInput")[0];
@@ -30,6 +29,7 @@ function addClockToDom(hour, minute, pmAm, city){
 
   // add to the dom view 
   clockView.appendChild(clock);
+  return clock;
 }
 
 function transformStringToDOM(str) {
@@ -37,14 +37,5 @@ function transformStringToDOM(str) {
     elm.innerHTML = str;
     return elm.children[0];
 }
-
-// Add orginal clock 
-var now = new Date(); 
-var hours = now.getHours(); 
-var Hours12Format = hours % 12;
-Hours12Format = Hours12Format === 0 ? 12: Hours12Format; 
-// 
-var amAm = (now.hours >= 12) ? "pm" : "am";
-addClockToDom(Hours12Format, now.getMinutes(), amAm, "new york");
 
 module.exports = addClockToDom; 

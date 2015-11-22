@@ -1,4 +1,6 @@
+
 function createClock(clockDom) {
+    var database = require("./data.js");
     var timezone; 
     var clockDiv = clockDom.getElementsByClassName("clock")[0];
 
@@ -20,7 +22,8 @@ function createClock(clockDom) {
 
     var deleteBtn = clockDiv.getElementsByClassName('close')[0];
     deleteBtn.onclick = function (e) {
-        clockDom.remove();
+        var id = clockDom.getAttribute("data-index"); 
+        database.removeTimeZone(id)
     }
 
 
@@ -58,7 +61,7 @@ function createClock(clockDom) {
     //MinutesBar Mobile 
     minuteBar.addEventListener("touchstart", function(e) {
         clockDiv.addEventListener("touchmove", minuteClockMouseMove, false);
-    });
+    })
 
 
     clockDiv.onclick = function() {
@@ -66,6 +69,11 @@ function createClock(clockDom) {
         clockDiv.removeEventListener("mousemove", minuteClockMouseMove, false);
         clockDiv.removeEventListener("touchmove", hourClockMouseMove, false);
         clockDiv.removeEventListener("touchmove", minuteClockMouseMove, false);
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index")); 
+        if(!isNaN(clockId)){   
+            database.setDefaultIndex(clockId);
+            database.update();
+        }
     };
 
 

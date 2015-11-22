@@ -1,4 +1,4 @@
-var addClock = require("./addClock.js");
+var database = require("./data.js");
 
 // function initAutoComplete() {
 var cityAutocompleteInput = document.getElementById('cityAutocomplete');
@@ -31,14 +31,9 @@ function getTimeZone(lat, lng, city) {
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             // Success!
-            var data = JSON.parse(request.responseText);
-            var time = moment(new Date()).tz(data.timeZoneId); 
-
-            var hour = time.format('h');
-            var minute = time.format('m');
-            var amPm = time.format('a');
-            addClock(hour,minute,amPm,city);
-
+            var TimeZone = JSON.parse(request.responseText);
+            database.addTimeZone(TimeZone.timeZoneId, city)
+            
         } else {
             console.log('something wrong with status')
                 // We reached our target server, but it returned an error
