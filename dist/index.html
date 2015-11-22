@@ -9,14 +9,19 @@
 
 <body>
 
-<div class="addClock">
-    <input type="text" placeholder="find the city">
-    <button>Add</button>
+<div class="clockContainer">
+    <input id="cityAutocomplete" class="cityInput" type="text" placeholder="type the city name or address">
 </div>
 
 <div class="clockView"></div>
 
+<script>
+
+</script>
 </body>
+<!-- Import Google auto complete API  -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places" async defer></script>
+
 <script src="./js/bundle.js"></script>
 
 </html>

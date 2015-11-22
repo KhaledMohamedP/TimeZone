@@ -18,9 +18,10 @@ function createClock(clockDom) {
     };
 
 
-    var hourBar = clockDiv.getElementsByClassName('hourBar')[0];
-    var minuteBar = clockDiv.getElementsByClassName('minuteBar')[0];
-
+    var deleteBtn = clockDiv.getElementsByClassName('close')[0];
+    deleteBtn.onclick = function (e) {
+        clockDom.remove();
+    }
 
 
     //  Hour input work 
@@ -28,7 +29,7 @@ function createClock(clockDom) {
     var minuteInput = clockDiv.getElementsByClassName('minuteInput')[0];
 
     hourInput.onkeyup = function(e) {
-        var degree = e.target.value * 30;
+        var degree = hourInput.value * 30;
         hourBar.style.transform = "rotate(" + degree + "deg)";
     };
     minuteInput.onkeyup = function(e) {
@@ -36,6 +37,10 @@ function createClock(clockDom) {
         minuteBar.style.transform = "rotate(" + degree + "deg)";
     };
 
+
+    // Clock hour/minutes bar ctrl 
+    var hourBar = clockDiv.getElementsByClassName('hourBar')[0];
+    var minuteBar = clockDiv.getElementsByClassName('minuteBar')[0];
 
     // experiment 
     hourBar.addEventListener("mousedown", function(e) {
@@ -67,6 +72,10 @@ function createClock(clockDom) {
 
     // mousemove clock function 
     function hourClockMouseMove(e) {
+        // So navigating around the clock 
+        //   doesn't select/highlight other elements in the page 
+        e.preventDefault(); 
+
         var degrees = getDegrees(e);
         var inHours = Math.floor(degrees / 30);
         var inDegrees = inHours * 30;
@@ -78,12 +87,35 @@ function createClock(clockDom) {
 
     // mousemove clock function 
     function minuteClockMouseMove(e) {
+        // So navigating around the clock 
+        //   doesn't select/highlight other elements in the page 
+        e.preventDefault();
+
         var degrees = getDegrees(e);
         var inMinutes = Math.floor(degrees / 6);
         var inDegrees = inMinutes * 6;
-        var hourDegrees = inDegrees + 6;
-        minuteBar.style.transform = "rotate(" + hourDegrees + "deg)";
-        minuteInput.value = hourDegrees / 6 % 60;
+        var minuteDegrees = inDegrees + 6;
+
+        minuteBar.style.transform = "rotate(" + minuteDegrees + "deg)";
+        minuteInput.value = minuteDegrees / 6 % 60;
+
+
+
+        // // Adjsut base on minutes 
+        //         // Adjust the hour bar 
+        // console.log(degrees);
+        // var digit = /\d+/;
+        // var minDegrees = degrees; 
+        // var hrDegrees = hourBar.style.transform; 
+
+        // // Convert the degree in number 
+        // var hrDegrees = digit.exec(minDegrees);
+        // hrDegrees = Number.parseInt(hrDegrees);
+
+        // hrDegrees = (degrees / 360) * 30; 
+        // // hrDegrees = hrDegrees === 0 ? 
+        // hourBar.style.transform = "rotate(" + hrDegrees + "deg)";
+
     }
 
     function getDegrees(e) {

@@ -14,7 +14,6 @@
   "validthis": true,
   "expr": false,
   "esnext": true,
-  "unused": true,
   "globals": {
   }
 }

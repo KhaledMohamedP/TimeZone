@@ -5,7 +5,8 @@
   display: inline-table;
   border-left: 3px solid #607D8B;
   box-shadow: 0px 0px 1px #607D8B;
-  height: 100%;; 
+  height: 100%;
+  border-radius: 20px 2px; 
 }
 
 .clock{
@@ -93,16 +94,32 @@
 
 
 /* Controller */
+.controller {
+  top: 0px;
+  position: absolute;
+  width: 120px;
+  /*padding: 1px;*/
+  /*background: #ccc;*/
+  left: 190px;
+  /*border: 1px solid black;*/
+  /*box-shadow: 2px 3px 4px black; */
 
+}
 .day { 
   margin: 0;
   list-style-type: none;
-  font-size: 12px;
+  font-size: 14px;
+  width: 100%;  
+}
+ul.day{
+  margin: 1px; 
+  padding: 1px;
 }
 .day li{
+  width: 40%; 
   cursor: pointer;
   display: inline-block;
-  padding: 2.5px 5px; 
+  padding: 2px 5px; 
 }
 
 .day li.active{  
@@ -111,33 +128,52 @@
 }
 
 .clockInput {
-  float: left;  
+  border: 1px solid #f2f2f2;
+  width: 100%; 
+}
+
+.clockInput input {
+  width: 43%; 
+  padding: 0;
+  margin: 0; 
+  height: 20px;
+  outline: 0; 
+  border: 1px solid transparent; 
+  line-height: 20px;
+  font-size: 15px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  -moz-appearance:textfield;
+  margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 
 .hourInput { 
-  outline: 9;
-  width: 22px;
-  float: left; 
+  text-align: right;
+  /*outline: 9;*/
+  /*width: 22px;*/
+  /*float: left; */
 }
-
+.hourInput:after{
+  content: ":";
+}
 .minuteInput {
-  width: 25px; 
+  text-align: left;
+  /*width: 25px; */
 }
 .open {
   background: yellow; 
 }
 
-.controller {
-  top: 10px;
-  position: absolute;
-  width: 120px;
-  padding: 1px;
-  background: #ccc;
-  left: 185px;
-  box-shadow: 2px 3px 4px black; 
 
-}
 
 
 .addClock {
@@ -150,10 +186,19 @@
     margin: 0px 10px;
 }
 
-.addClock input {
+.clockInput input {
   height: 20px; 
 }
-.addClock button {
+.cityInput {
+  height: 30px; 
+  width: 90%; 
+  border-radius: 10px;
+  outline: 0; 
+  border: 1px solid #f2f2f2;  
+  padding: 5px; 
+}
+
+.clockContainer button {
   height: 25px;
   background: black;
   color: white; 
@@ -161,22 +206,26 @@
   border: 1px solid transparent; 
   cursor: pointer;  
 }
-.close {
+.close{
   cursor: pointer;
   top: -13px;
-  left: 299px;
+  left: 0px;
   position: absolute;
   color: rgba(255, 255, 255, 0.73);
   background: #607D8B;
-  padding: 3px;
-  
+  padding: 5px;
 }
 
-
+.location {
+  left: 33%; 
+  top: 60%; 
+  position: absolute; 
+  color: red; 
+}
 
 /* Validation styling */
 input:required:invalid, input:focus:invalid {
   /* insert your own styles for invalid form input */
   -moz-box-shadow: none;
-  border-bottom: 3px solid #CC3366; 
+  border-bottom: 1px solid #CC3366; 
 }
