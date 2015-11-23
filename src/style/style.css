@@ -1,182 +1,185 @@
-.clockContainer{
-  padding: 10px;
-  margin: 4px 10px;
-  width: 310px;
-  display: inline-table;
-  border-left: 3px solid #607D8B;
-  box-shadow: 0px 0px 1px #607D8B;
-  height: 100%;
-  border-radius: 20px 2px; 
+.clockContainer {
+    padding: 10px;
+    margin: 4px 10px;
+    width: 310px;
+    display: inline-table;
+    border-left: 3px solid #607D8B;
+    box-shadow: 0px 0px 1px #607D8B;
+    height: 100%;
+    border-radius: 20px 2px;
 }
 
-.clock{
-  background: #f2f2f2;
-  width: 200px;
-  position: relative;
-  height: 200px;
-  border: 3px solid #9E9E9E;
-  border-radius: 50%; 
-  cursor: -webkit-grab;
-  box-shadow: 0px 0 0px black; 
+.clock {
+    background: #f2f2f2;
+    width: 200px;
+    position: relative;
+    height: 200px;
+    border: 3px solid #9E9E9E;
+    border-radius: 50%;
+    cursor: -webkit-grab;
+    box-shadow: 0px 0 0px black;
+    color: #000;
+    background: url("http://www.nofrackingway.us/wp-content/uploads/2013/08/sunlight.jpg");
 }
 
-.tip{  
-  position: absolute;
-  background: black;
-  transform-origin: 50% 100px;
-  margin: 0 98px 200px;
+.tip {
+    position: absolute;
+    background: black;
+    transform-origin: 50% 100px;
+    margin: 0 98px 200px;
 }
-.hourTip{ 
-  height: 8px;
-  width: 4px;
-}
-.hourTip span{ 
-  position: absolute;
-  top: 10px;
-  padding: -1px;
-  left: -3px;
-}
-.hourTip span::selection{
-  background: transparent;
-}
-.minuteTip{
-  height: 3px;
-  width: 1px;
 
+.hourTip {
+    height: 8px;
+    width: 4px;
+}
+
+.hourTip span {
+    position: absolute;
+    top: 10px;
+    padding: -1px;
+    left: -3px;
+}
+
+.hourTip span::selection {
+    background: transparent;
+}
+
+.minuteTip {
+    height: 3px;
+    width: 1px;
 }
 
 .bar {
-  transform-origin: 50% bottom;
-  background: #009688;
-  position: absolute;
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-  box-shadow: 0px 3px 1px #000; 
+    transform-origin: 50% bottom;
+    background: #009688;
+    position: absolute;
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    box-shadow: 0px 3px 1px #000;
 }
+
 .hourBar {
-  /*z-index: 100; */
-  width: 6px;
-  transform: rotate(360deg);
-  height: 63px;
-  margin: 39px 98px 100px;
+    width: 7px;
+    height: 55px;
+    margin: 45px 98px 100px;
 }
 
-
-.minuteBar {      
-  transform: rotate(90deg);
-  height: 70px;
-  width: 4px;
-  margin: 30px 99px 74px;
-  
+.minuteBar {
+    height: 70px;
+    width: 4px;
+    margin: 30px 99px 74px;
 }
 
-.clockCenter { 
-  height: 10px; 
-  position: absolute;
-  background: #607D8B;
-  margin: calc(50% - 4px);
-  width: 10px;
-  border-radius: 50%;
-  z-index: 1;
-  box-shadow: 0px -1px 0px #000;  
+.clockCenter {
+    height: 10px;
+    position: absolute;
+    background: #607D8B;
+    margin: calc(50% - 4px);
+    width: 10px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0px -1px 0px #000;
 }
 
 .one {
-  transform: rotate(30deg);
-}
-.tweleve{
-  transform: rotate(0deg);
+    transform: rotate(30deg);
 }
 
-.twoMin{
-  transform: rotate(6deg);
+.tweleve {
+    transform: rotate(0deg);
+}
+
+.twoMin {
+    transform: rotate(6deg);
 }
 
 
 /* Controller */
-.controller {
-  top: 0px;
-  position: absolute;
-  width: 120px;
-  /*padding: 1px;*/
-  /*background: #ccc;*/
-  left: 190px;
-  /*border: 1px solid black;*/
-  /*box-shadow: 2px 3px 4px black; */
 
+.controller {
+    top: 0px;
+    position: absolute;
+    width: 120px;
+    /*padding: 1px;*/
+    /*background: #ccc;*/
+    left: 190px;
+    /*border: 1px solid black;*/
+    /*box-shadow: 2px 3px 4px black; */
 }
-.day { 
-  margin: 0;
-  list-style-type: none;
-  font-size: 14px;
-  width: 100%;  
+
+.day {
+    margin: 0;
+    list-style-type: none;
+    font-size: 14px;
+    width: 100%;
 }
-ul.day{
-  margin: 1px; 
-  padding: 1px;
+
+ul.day {
+    margin: 1px;
+    padding: 1px;
 }
-.day li{
-  width: 40%; 
-  cursor: pointer;
-  display: inline-block;
-  padding: 2px 5px; 
-  border-radius: 20px;
+
+.day li {
+    width: 40%;
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 20px;
     text-align: center;
 }
 
-.day li.active{  
-  color: #fff;
-  background: #009688; 
+.day li.active {
+    color: #fff;
+    background: #009688;
 }
 
 .clockInput {
-  border: 1px solid #f2f2f2;
-  width: 100%; 
+    border: 1px solid #f2f2f2;
+    width: 100%;
 }
 
 .clockInput input {
-  width: 43%; 
-  padding: 0;
-  margin: 0; 
-  height: 20px;
-  outline: 0; 
-  border: 1px solid transparent; 
-  line-height: 20px;
-  font-size: 15px;
-
+    width: 43%;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    outline: 0;
+    border: 1px solid transparent;
+    line-height: 20px;
+    font-size: 15px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  -moz-appearance:textfield;
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
+.hourInput {
+    text-align: right;
+    /*outline: 9;*/
+    /*width: 22px;*/
+    /*float: left; */
+}
 
-.hourInput { 
-  text-align: right;
-  /*outline: 9;*/
-  /*width: 22px;*/
-  /*float: left; */
+.hourInput:after {
+    content: ":";
 }
-.hourInput:after{
-  content: ":";
-}
+
 .minuteInput {
-  text-align: left;
-  /*width: 25px; */
+    text-align: left;
+    /*width: 25px; */
 }
+
 .open {
-  background: yellow; 
+    background: yellow;
 }
-
-
-
 
 .addClock {
     padding: 10px;
@@ -189,51 +192,61 @@ input[type=number] {
 }
 
 .clockInput input {
-  height: 20px; 
+    height: 20px;
 }
+
 .cityInput {
-  height: 30px; 
-  width: 90%; 
-  border-radius: 10px;
-  outline: 0; 
-  border: 1px solid #f2f2f2;  
-  padding: 5px; 
+    height: 30px;
+    width: 90%;
+    border-radius: 10px;
+    outline: 0;
+    border: 1px solid #f2f2f2;
+    padding: 5px;
 }
 
 .clockContainer button {
-  height: 25px;
-  background: black;
-  color: white; 
-  outline: 0; 
-  border: 1px solid transparent; 
-  cursor: pointer;  
+    height: 25px;
+    background: black;
+    color: white;
+    outline: 0;
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .darkTheme {
-  background: #000;
-  color: #fff;
+    background: #000;
+    background: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTEaoc6LTA1fqPz2gebG8HPdx2kd14SxA4e4QnC5_7r6fqGD4NEpA");
 }
 
-.close{
-  cursor: pointer;
-  top: -13px;
-  left: 0px;
-  position: absolute;
-  color: rgba(255, 255, 255, 0.73);
-  background: #607D8B;
-  padding: 5px;
+.darkTheme > .tip {
+    background: #009688;
+}
+.darkTheme > .hourTip{
+  color: red; 
+}
+.close {
+    cursor: pointer;
+    top: -13px;
+    left: 0px;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.73);
+    background: #607D8B;
+    padding: 5px;
 }
 
 .location {
-  left: 33%; 
-  top: 60%; 
-  position: absolute; 
-  color: red; 
+    left: 33%;
+    top: 60%;
+    position: absolute;
+    color: red;
 }
 
+
 /* Validation styling */
-input:required:invalid, input:focus:invalid {
-  /* insert your own styles for invalid form input */
-  -moz-box-shadow: none;
-  border-bottom: 1px solid #CC3366; 
+
+input:required:invalid,
+input:focus:invalid {
+    /* insert your own styles for invalid form input */
+    -moz-box-shadow: none;
+    border-bottom: 1px solid #CC3366;
 }

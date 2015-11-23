@@ -10,22 +10,19 @@ function addClockToDom(hour, minute, amPm, city, indexId){
     // hour
   var hourInput = clock.getElementsByClassName("hourInput")[0];
   hourInput.value = hour; 
-  hourInput.onkeyup();
+  hourInput.onchange();
 
     // minute
   var minuteInput = clock.getElementsByClassName("minuteInput")[0];
   minuteInput.value = minute; 
-  minuteInput.onkeyup();
+  minuteInput.onchange();
 
     // am or pm 
   var am = clock.getElementsByClassName("am")[0];
   var pm = clock.getElementsByClassName("pm")[0];
-  console.log("inside", amPm)
   if(amPm.toLowerCase() === "pm"){
-    console.log("PM CLICKED")
     pm.click();
   } else {
-    console.log("AM CLICKED")
     am.click(); 
   }
     // Location text

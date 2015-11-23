@@ -2,10 +2,9 @@ var database = require("./data.js");
 
 // function initAutoComplete() {
 var cityAutocompleteInput = document.getElementById('cityAutocomplete');
-cityAutocompleteInput.onfocus = function() {
-    console.log("onfocus");
+window.loadGoogleAPi = function() {
     var autocomplete = new window.google.maps.places.Autocomplete(
-        (document.getElementById('cityAutocomplete')), {
+        (cityAutocompleteInput), {
             types: ['(cities)']
         });
 
@@ -33,7 +32,8 @@ function getTimeZone(lat, lng, city) {
             // Success!
             var TimeZone = JSON.parse(request.responseText);
             database.addTimeZone(TimeZone.timeZoneId, city)
-            
+            cityAutocompleteInput.value = ''; 
+            cityAutocompleteInput.focus(); 
         } else {
             console.log('something wrong with status')
                 // We reached our target server, but it returned an error

@@ -2,6 +2,8 @@ function createClock(clockDom) {
     var database = require("./data.js");
     var clockDiv = clockDom.getElementsByClassName("clock")[0];
 
+
+    // Paints all the hour/minute tips around the clock div
     paintTip(clockDiv);
 
 
@@ -9,29 +11,26 @@ function createClock(clockDom) {
     var pm = clockDiv.getElementsByClassName('pm')[0];
     var am = clockDiv.getElementsByClassName('am')[0];
     pm.onclick = function() {
-        // removeClass(am, "active");
-        // toggleClass(pm, "active");
-        removeClass(clockDom, "darkTheme")
-            am.className = "am";
-            pm.className = "pm active";
-        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
-        database.setDefaultIndex(clockId);
-
+        removeClass(clockDiv, "darkTheme")
+        am.className = "am";
+        pm.className = "pm active";
+        update();
     };
     am.onclick = function() {
-        // toggleClass(am, "active");
-        // removeClass(pm, "active");
         am.className = "am active";
         pm.className = "pm";
-        clockDom.className += " darkTheme"
-        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
-        database.setDefaultIndex(clockId);
 
+        // If darkTheme is not there
+        if (clockDiv.className.split(' ').indexOf("darkTheme") === -1) {
+            clockDiv.className += " darkTheme"
+        }
+        update();
     };
 
 
     var deleteBtn = clockDiv.getElementsByClassName('close')[0];
     deleteBtn.onclick = function(e) {
+        e.stopPropagation();
         var id = clockDom.getAttribute("data-index");
         database.removeTimeZone(id)
     }
@@ -41,11 +40,11 @@ function createClock(clockDom) {
     var hourInput = clockDiv.getElementsByClassName('hourInput')[0];
     var minuteInput = clockDiv.getElementsByClassName('minuteInput')[0];
 
-    hourInput.onkeyup = function(e) {
+    hourInput.onchange = function(e) {
         var degree = hourInput.value * 30;
         hourBar.style.transform = "rotate(" + degree + "deg)";
     };
-    minuteInput.onkeyup = function(e) {
+    minuteInput.onchange = function(e) {
         var degree = minuteInput.value * 6;
         minuteBar.style.transform = "rotate(" + degree + "deg)";
     };
@@ -60,33 +59,20 @@ function createClock(clockDom) {
         clockDiv.addEventListener("mousemove", hourClockMouseMove, false);
     });
 
-    hourBar.addEventListener("touchstart", function(e) {
-        clockDiv.addEventListener("touchmove", hourClockMouseMove, false);
-    });
-
     // Minutes Events 
     minuteBar.addEventListener("mousedown", function(e) {
         clockDiv.addEventListener("mousemove", minuteClockMouseMove, false);
     });
-    //MinutesBar Mobile 
-    minuteBar.addEventListener("touchstart", function(e) {
-        clockDiv.addEventListener("touchmove", minuteClockMouseMove, false);
-    })
 
 
-    clockDiv.onclick = function() {
+
+    clockDom.onmouseup = function(e) {
+        e.stopPropagation();
         clockDiv.removeEventListener("mousemove", hourClockMouseMove, false);
         clockDiv.removeEventListener("mousemove", minuteClockMouseMove, false);
-        clockDiv.removeEventListener("touchmove", hourClockMouseMove, false);
-        clockDiv.removeEventListener("touchmove", minuteClockMouseMove, false);
-        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
-        if (!isNaN(clockId)) {
-            database.setDefaultIndex(clockId);
-            database.update();
-        }
+        
+        update();
     };
-
-
 
     // mousemove clock function 
     function hourClockMouseMove(e) {
@@ -116,7 +102,6 @@ function createClock(clockDom) {
 
         minuteBar.style.transform = "rotate(" + minuteDegrees + "deg)";
         minuteInput.value = minuteDegrees / 6 % 60;
-
 
 
         // // Adjsut base on minutes 
@@ -158,6 +143,12 @@ function createClock(clockDom) {
         return degrees;
     }
 
+    function update() {
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
+        database.setDefaultIndex(clockId);
+        database.update();
+    }
+
     return clockDom;
 }
 
@@ -189,6 +180,8 @@ function paintTip(clockDiv) {
         tip.style.transform = "rotate(" + (i * 6) + "deg)";
         clockDiv.appendChild(tip);
     }
+
+    
 }
 
 function removeClass(el, className) {
@@ -202,21 +195,5 @@ function removeClass(el, className) {
 
 }
 
-function toggleClass(el, className) {
-    var classes = el.className.split(' ');
-    var existingIndex = classes.indexOf(className);
-    console.log("**", classes);
-    console.log("**", el);
-    console.log("**", existingIndex);
-    if (existingIndex >= 0){
-        classes.splice(existingIndex, 1);
-    } else {
-        classes.push(className);
-        console.log("it doesn't exist", classes, className);
-    }
-
-    console.log("classname", className);
-    el.className = classes.join(' ');
-}
 
 module.exports = createClock;
