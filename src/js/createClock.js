@@ -1,3 +1,5 @@
+var clockAPI = require("./clockAPI.js");
+
 function createClock(clockDom) {
     var database = require("./data.js");
     var clockDiv = clockDom.getElementsByClassName("clock")[0];
@@ -10,29 +12,32 @@ function createClock(clockDom) {
     // Day: pm/am
     var pm = clockDiv.getElementsByClassName('pm')[0];
     var am = clockDiv.getElementsByClassName('am')[0];
-    pm.onclick = function() {
-        removeClass(clockDiv, "darkTheme")
-        am.className = "am";
-        pm.className = "pm active";
+    pm.onclick = function pmOnClick() {
+        clockAPI.setAmPm(clockDom, "pm");
         update();
     };
-    am.onclick = function() {
-        am.className = "am active";
-        pm.className = "pm";
-
-        // If darkTheme is not there
-        if (clockDiv.className.split(' ').indexOf("darkTheme") === -1) {
-            clockDiv.className += " darkTheme"
-        }
+    am.onclick = function amOnClick() {
+        clockAPI.setAmPm(clockDom, "am");
         update();
     };
 
 
+    // Delete Clock 
     var deleteBtn = clockDiv.getElementsByClassName('close')[0];
-    deleteBtn.onclick = function(e) {
+    deleteBtn.onclick = function deleteOnClick(e) {
         e.stopPropagation();
         var id = clockDom.getAttribute("data-index");
         database.removeTimeZone(id)
+    }
+
+
+    // Set time now 
+    var timeNow = clockDom.getElementsByClassName('currentTime')[0];
+    timeNow.onclick = function (e) {
+        var timezone = clockDom.getAttribute("data-timezone"); 
+        var time = moment(new Date()).tz(timezone); 
+        clockAPI.setTime(clockDom, time.format("h"), time.format("m"));
+        clockAPI.setAmPm(clockDom, time.format('a'));
     }
 
 
@@ -40,13 +45,14 @@ function createClock(clockDom) {
     var hourInput = clockDiv.getElementsByClassName('hourInput')[0];
     var minuteInput = clockDiv.getElementsByClassName('minuteInput')[0];
 
-    hourInput.onchange = function(e) {
-        var degree = hourInput.value * 30;
-        hourBar.style.transform = "rotate(" + degree + "deg)";
+    hourInput.onchange = function hourInputOnChange(e) {
+        clockAPI.setTime(clockDom, hourInput.value, minuteInput.value);
+        update();
     };
-    minuteInput.onchange = function(e) {
-        var degree = minuteInput.value * 6;
-        minuteBar.style.transform = "rotate(" + degree + "deg)";
+    minuteInput.onchange = function minuteInputOnChange(e) {
+        clockAPI.setTime(clockDom, hourInput.value, minuteInput.value);
+        update();
+        
     };
 
 
@@ -66,7 +72,7 @@ function createClock(clockDom) {
 
 
 
-    clockDom.onmouseup = function(e) {
+    clockDiv.onmouseup = function(e) {
         e.stopPropagation();
         clockDiv.removeEventListener("mousemove", hourClockMouseMove, false);
         clockDiv.removeEventListener("mousemove", minuteClockMouseMove, false);
@@ -86,7 +92,7 @@ function createClock(clockDom) {
         var hourDegree = inDegrees + 30;
         hourBar.style.transform = "rotate(" + hourDegree + "deg)";
         hourInput.value = hourDegree / 30;
-
+        // clockAPI.setTime(clockDom, hourInput.value , minuteInput.value)
     }
 
     // mousemove clock function 
@@ -103,26 +109,7 @@ function createClock(clockDom) {
         minuteBar.style.transform = "rotate(" + minuteDegrees + "deg)";
         minuteInput.value = minuteDegrees / 6 % 60;
 
-
-        // // Adjsut base on minutes 
-        //         // Adjust the hour bar 
-        // console.log(degrees);
-        // var digit = /\d+/;
-        // var degreesInMinuteBar = degrees; 
-        // var degreesInHourBar = hourBar.style.transform; 
-
-        // var hrDegrees = digit.exec(degreesInHourBar)[0];
-        // hrDegrees = Number.parseInt(hrDegrees);
-
-        // console.log(degreesInHourBar,hrDegrees);
-        // var currentHourDegree = Math.floor(hrDegrees / 30) * 30; 
-        // var hourBarPrgress = (degreesInMinuteBar / 360) * 30;
-        // var nextHourDegree = currentHourDegree + hourBarPrgress;  
-        // if(Math.floor(currentHourDegree) === Math.floor(nextHourDegree)){
-        //     currentHourDegree += 30;
-        // }
-        // console.log(nextHourDegree, hourBarPrgress)
-        // hourBar.style.transform = "rotate(" + nextHourDegree + "deg)";
+        // clockAPI.setTime(clockDom, hourInput.value , minuteInput.value)
 
     }
 
@@ -182,17 +169,6 @@ function paintTip(clockDiv) {
     }
 
     
-}
-
-function removeClass(el, className) {
-    var classes = el.className.split(' ');
-    var existingIndex = classes.indexOf(className);
-
-    if (existingIndex >= 0) {
-        classes.splice(existingIndex, 1);
-        el.className = classes.join(' ');
-    }
-
 }
 
 

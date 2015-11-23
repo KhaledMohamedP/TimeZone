@@ -20,6 +20,7 @@
     box-shadow: 0px 0 0px black;
     color: #000;
     background: url("http://www.nofrackingway.us/wp-content/uploads/2013/08/sunlight.jpg");
+    z-index: 1; 
 }
 
 .tip {
@@ -57,6 +58,7 @@
     cursor: grabbing;
     cursor: -webkit-grabbing;
     box-shadow: 0px 3px 1px #000;
+    z-index: 3; 
 }
 
 .hourBar {
@@ -204,14 +206,15 @@ input[type=number] {
     padding: 5px;
 }
 
-.clockContainer button {
+
+/*.clockContainer button {
     height: 25px;
     background: black;
     color: white;
     outline: 0;
     border: 1px solid transparent;
     cursor: pointer;
-}
+}*/
 
 .darkTheme {
     background: #000;
@@ -221,9 +224,11 @@ input[type=number] {
 .darkTheme > .tip {
     background: #009688;
 }
-.darkTheme > .hourTip{
-  color: red; 
+
+.darkTheme > .hourTip {
+    color: red;
 }
+
 .close {
     cursor: pointer;
     top: -13px;
@@ -235,10 +240,29 @@ input[type=number] {
 }
 
 .location {
-    left: 33%;
-    top: 60%;
+    left: 26%;
+    top: 63%;
     position: absolute;
     color: red;
+    z-index: 2;
+    width: 100px;
+    text-align: center;
+    font-weight: 900;
+    font-family: cursive;
+}
+
+button.currentTime {
+    position: absolute;
+    left: 20px;
+    width: 103px;
+    top: 170px;
+    border-radius: 20px;
+    outline: 0;
+    background: #009688;
+    color: white;
+    font-size: 17px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 
