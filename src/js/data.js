@@ -28,7 +28,7 @@ module.exports = {
     },
     update: function() {
         if (database <= 0 || isNaN(defaultIndex)) {
-            return
+            return;
         }
 
         var databaseCopy = database.concat([]);
@@ -36,7 +36,7 @@ module.exports = {
         var dateObj = {
             hour: defaultClock.dom.getElementsByClassName('hourInput')[0].value,
             minute: defaultClock.dom.getElementsByClassName('minuteInput')[0].value
-        }
+        };
 
         var amPM = defaultClock.dom.getElementsByClassName("active")[0].className;
 
@@ -48,7 +48,7 @@ module.exports = {
                 dateObj.hour = dateObj.hour === 24 ? 0 : dateObj.hour;
             }
         }else if (amPM.indexOf("am") > -1){
-            if(dateObj.hour == 12){
+            if(dateObj.hour === 12){
               dateObj.hour = 0; 
             }
         }
@@ -73,7 +73,7 @@ module.exports = {
             clockAPI.setTime(elm.dom, hour, minute);
             clockAPI.setAmPm(elm.dom, amPm);
 
-        })
+        });
     },
     setDefaultIndex: function(index) {
         defaultIndex = index;
@@ -81,4 +81,4 @@ module.exports = {
     getTimeBaseOnTimeZone: function(){
 
     }
-}
+};

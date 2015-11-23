@@ -16,7 +16,7 @@ module.exports = {
         var clockElm = el.getElementsByClassName("clock")[0];
 
         if (amPm.toLowerCase() === "pm") {
-            removeClass(clockElm, "darkTheme")
+            removeClass(clockElm, "darkTheme");
             pm.className = "pm active";
             am.className = "am";
         } else {
@@ -25,7 +25,7 @@ module.exports = {
 
             // If darkTheme is not there
             if (clockElm.className.split(' ').indexOf("darkTheme") === -1) {
-                clockElm.className += " darkTheme"
+                clockElm.className += " darkTheme";
             }
         }
     },
@@ -46,7 +46,7 @@ module.exports = {
 
 
         var hrDegree = hourInput.value * 30;
-        var vmDegree = this.adjustClock(hrDegree, minDegree, hourInput)
+        var vmDegree = this.adjustClock(hrDegree, minDegree, hourInput);
         hourBar.style.transform = "rotate(" + vmDegree + "deg)";
     },
     setCity: function setCityName(el, city) {
@@ -68,4 +68,4 @@ module.exports = {
         var nextHourDegree = hrDegrees + hourBarPrgress;
         return nextHourDegree;
     }
-}
+};

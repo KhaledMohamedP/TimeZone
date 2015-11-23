@@ -2,23 +2,6 @@ var database = require("./data.js");
 
 // function initAutoComplete() {
 var cityAutocompleteInput = document.getElementById('cityAutocomplete');
-window.loadGoogleAPi = function() {
-    var autocomplete = new window.google.maps.places.Autocomplete(
-        (cityAutocompleteInput), {
-            types: ['(cities)']
-        });
-
-    autocomplete.addListener('place_changed', findTimeZone);
-
-    function findTimeZone() {
-        var place = autocomplete.getPlace();
-        var lng = place.geometry.location.lng();
-        var lat = place.geometry.location.lat();
-        getTimeZone(lat, lng, place.name);
-    }
-}
-
-
 
 function getTimeZone(lat, lng, city) {
     var latLng = lat + ',' + lng;
@@ -31,20 +14,46 @@ function getTimeZone(lat, lng, city) {
         if (request.status >= 200 && request.status < 400) {
             // Success!
             var TimeZone = JSON.parse(request.responseText);
-            database.addTimeZone(TimeZone.timeZoneId, city)
-            cityAutocompleteInput.value = ''; 
-            cityAutocompleteInput.focus(); 
+            database.addTimeZone(TimeZone.timeZoneId, city);
+            cityAutocompleteInput.blur();
+            setTimeout(function() {
+                cityAutocompleteInput.value = '';
+                cityAutocompleteInput.focus();
+            }, 10);
         } else {
-            console.log('something wrong with status')
-                // We reached our target server, but it returned an error
-
+            console.log('something wrong with status');
+            // We reached our target server, but it returned an error
         }
     };
 
     request.onerror = function() {
-        console.log("onerror")
-            // There was a connection error of some sort
+        console.log("onerror");
+        // There was a connection error of some sort
     };
 
     request.send();
 }
+
+// var script = document.createElement('script');
+// script.src =
+//     'https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places&callback=loadGoogleAPi';
+// document.body.appendChild(script);
+
+
+
+
+window.loadGoogleAPi = function() {
+    var autocomplete = new window.google.maps.places.Autocomplete(
+        (cityAutocompleteInput), {
+            types: ['(cities)']
+        });
+
+    function findTimeZone() {
+        var place = autocomplete.getPlace();
+        var lng = place.geometry.location.lng();
+        var lat = place.geometry.location.lat();
+        getTimeZone(lat, lng, place.name);
+    }
+
+    autocomplete.addListener('place_changed', findTimeZone);
+};

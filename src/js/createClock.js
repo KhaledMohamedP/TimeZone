@@ -1,5 +1,37 @@
 var clockAPI = require("./clockAPI.js");
 
+
+function paintTip(clockDiv) {
+    for (var i = 0; i < 60; i++) {
+        var tip = document.createElement("div");
+        tip.className = "tip ";
+
+        // If the tip is an hour
+        if (i % 5 === 0) {
+            tip.className += "hourTip";
+            var hourSpan = document.createElement("span");
+
+            // Every 5 tips we get an hour
+            var hour = i / 5;
+            // if the result is 0 return 12
+            var hourText = hour === 0 ? 12 : hour;
+            hourSpan.innerHTML = hourText;
+            hourSpan.style.transform = "rotate(" + (-i * 6) + "deg)";
+            tip.appendChild(hourSpan);
+
+            // Else it's minute
+        } else {
+            tip.className += "minuteTip";
+        }
+
+
+        tip.style.transform = "rotate(" + (i * 6) + "deg)";
+        clockDiv.appendChild(tip);
+    }
+
+    
+}
+
 function createClock(clockDom) {
     var database = require("./data.js");
     var clockDiv = clockDom.getElementsByClassName("clock")[0];
@@ -7,7 +39,11 @@ function createClock(clockDom) {
 
     // Paints all the hour/minute tips around the clock div
     paintTip(clockDiv);
-
+    function update() {
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
+        database.setDefaultIndex(clockId);
+        database.update();
+    }
 
     // Day: pm/am
     var pm = clockDiv.getElementsByClassName('pm')[0];
@@ -27,8 +63,8 @@ function createClock(clockDom) {
     deleteBtn.onclick = function deleteOnClick(e) {
         e.stopPropagation();
         var id = clockDom.getAttribute("data-index");
-        database.removeTimeZone(id)
-    }
+        database.removeTimeZone(id);
+    };
 
 
     // Set time now 
@@ -38,7 +74,8 @@ function createClock(clockDom) {
         var time = moment(new Date()).tz(timezone); 
         clockAPI.setTime(clockDom, time.format("h"), time.format("m"));
         clockAPI.setAmPm(clockDom, time.format('a'));
-    }
+        update();
+    };
 
 
     //  Hour input work 
@@ -130,46 +167,12 @@ function createClock(clockDom) {
         return degrees;
     }
 
-    function update() {
-        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
-        database.setDefaultIndex(clockId);
-        database.update();
-    }
+
 
     return clockDom;
 }
 
 
-function paintTip(clockDiv) {
-    for (var i = 0; i < 60; i++) {
-        var tip = document.createElement("div");
-        tip.className = "tip ";
-
-        // If the tip is an hour
-        if (i % 5 === 0) {
-            tip.className += "hourTip";
-            var hourSpan = document.createElement("span");
-
-            // Every 5 tips we get an hour
-            var hour = i / 5;
-            // if the result is 0 return 12
-            var hourText = hour === 0 ? 12 : hour;
-            hourSpan.innerHTML = hourText;
-            hourSpan.style.transform = "rotate(" + (-i * 6) + "deg)";
-            tip.appendChild(hourSpan);
-
-            // Else it's minute
-        } else {
-            tip.className += "minuteTip";
-        }
-
-
-        tip.style.transform = "rotate(" + (i * 6) + "deg)";
-        clockDiv.appendChild(tip);
-    }
-
-    
-}
 
 
 module.exports = createClock;

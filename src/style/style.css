@@ -19,7 +19,7 @@
     cursor: -webkit-grab;
     box-shadow: 0px 0 0px black;
     color: #000;
-    background: url("http://www.nofrackingway.us/wp-content/uploads/2013/08/sunlight.jpg");
+    /*background: url("http://www.thetruthconsortium.org/wp-content/uploads/2015/07/day-vs-night-600x360.jpg") left;*/
     z-index: 1; 
 }
 
@@ -218,15 +218,18 @@ input[type=number] {
 
 .darkTheme {
     background: #000;
-    background: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTEaoc6LTA1fqPz2gebG8HPdx2kd14SxA4e4QnC5_7r6fqGD4NEpA");
+    /*background: url("http://www.thetruthconsortium.org/wp-content/uploads/2015/07/day-vs-night-600x360.jpg") right;*/
 }
 
 .darkTheme > .tip {
-    background: #009688;
+    background: #FFEB3B;
 }
 
 .darkTheme > .hourTip {
-    color: red;
+    color: #FFEB3B;
+}
+.darkTheme > .bar {
+    background: #FFEB3B;
 }
 
 .close {
@@ -240,15 +243,17 @@ input[type=number] {
 }
 
 .location {
-    left: 26%;
-    top: 63%;
+    left: 25%;
+    top: 62%;
     position: absolute;
-    color: red;
+    color: #8BC34A;
     z-index: 2;
     width: 100px;
     text-align: center;
     font-weight: 900;
     font-family: cursive;
+    background: rgba(255,255,255,0.16);
+    border-radius: 10px
 }
 
 button.currentTime {
