@@ -2,14 +2,16 @@ var createClock = require("./createClock.js");
 var clockView = document.getElementsByClassName("clockView")[0];
 
 
-function addClockToDom(hour, minute, pmAm, city, indexId){
+function addClockToDom(hour, minute, amPm, city, indexId){
   var clockDom = transformStringToDOM(require("../template/clock-template.html"));
   var clock = createClock(clockDom);
   // Setting 
+  
     // hour
   var hourInput = clock.getElementsByClassName("hourInput")[0];
   hourInput.value = hour; 
   hourInput.onkeyup();
+
     // minute
   var minuteInput = clock.getElementsByClassName("minuteInput")[0];
   minuteInput.value = minute; 
@@ -18,9 +20,12 @@ function addClockToDom(hour, minute, pmAm, city, indexId){
     // am or pm 
   var am = clock.getElementsByClassName("am")[0];
   var pm = clock.getElementsByClassName("pm")[0];
-  if(pmAm.toLowerCase() == "pm"){
+  console.log("inside", amPm)
+  if(amPm.toLowerCase() === "pm"){
+    console.log("PM CLICKED")
     pm.click();
   } else {
+    console.log("AM CLICKED")
     am.click(); 
   }
     // Location text

@@ -1,7 +1,5 @@
-
 function createClock(clockDom) {
     var database = require("./data.js");
-    var timezone; 
     var clockDiv = clockDom.getElementsByClassName("clock")[0];
 
     paintTip(clockDiv);
@@ -11,18 +9,30 @@ function createClock(clockDom) {
     var pm = clockDiv.getElementsByClassName('pm')[0];
     var am = clockDiv.getElementsByClassName('am')[0];
     pm.onclick = function() {
-        pm.className = "pm active";
-        am.className = "am";
+        // removeClass(am, "active");
+        // toggleClass(pm, "active");
+        removeClass(clockDom, "darkTheme")
+            am.className = "am";
+            pm.className = "pm active";
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
+        database.setDefaultIndex(clockId);
+
     };
     am.onclick = function() {
+        // toggleClass(am, "active");
+        // removeClass(pm, "active");
         am.className = "am active";
         pm.className = "pm";
+        clockDom.className += " darkTheme"
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
+        database.setDefaultIndex(clockId);
+
     };
 
 
     var deleteBtn = clockDiv.getElementsByClassName('close')[0];
-    deleteBtn.onclick = function (e) {
-        var id = clockDom.getAttribute("data-index"); 
+    deleteBtn.onclick = function(e) {
+        var id = clockDom.getAttribute("data-index");
         database.removeTimeZone(id)
     }
 
@@ -69,8 +79,8 @@ function createClock(clockDom) {
         clockDiv.removeEventListener("mousemove", minuteClockMouseMove, false);
         clockDiv.removeEventListener("touchmove", hourClockMouseMove, false);
         clockDiv.removeEventListener("touchmove", minuteClockMouseMove, false);
-        var clockId = Number.parseInt(clockDom.getAttribute("data-index")); 
-        if(!isNaN(clockId)){   
+        var clockId = Number.parseInt(clockDom.getAttribute("data-index"));
+        if (!isNaN(clockId)) {
             database.setDefaultIndex(clockId);
             database.update();
         }
@@ -82,7 +92,7 @@ function createClock(clockDom) {
     function hourClockMouseMove(e) {
         // So navigating around the clock 
         //   doesn't select/highlight other elements in the page 
-        e.preventDefault(); 
+        e.preventDefault();
 
         var degrees = getDegrees(e);
         var inHours = Math.floor(degrees / 30);
@@ -148,12 +158,12 @@ function createClock(clockDom) {
         return degrees;
     }
 
-    return clockDom; 
+    return clockDom;
 }
 
 
-function paintTip(clockDiv){
-        for (var i = 0; i < 60; i++) {
+function paintTip(clockDiv) {
+    for (var i = 0; i < 60; i++) {
         var tip = document.createElement("div");
         tip.className = "tip ";
 
@@ -181,4 +191,32 @@ function paintTip(clockDiv){
     }
 }
 
-module.exports = createClock; 
+function removeClass(el, className) {
+    var classes = el.className.split(' ');
+    var existingIndex = classes.indexOf(className);
+
+    if (existingIndex >= 0) {
+        classes.splice(existingIndex, 1);
+        el.className = classes.join(' ');
+    }
+
+}
+
+function toggleClass(el, className) {
+    var classes = el.className.split(' ');
+    var existingIndex = classes.indexOf(className);
+    console.log("**", classes);
+    console.log("**", el);
+    console.log("**", existingIndex);
+    if (existingIndex >= 0){
+        classes.splice(existingIndex, 1);
+    } else {
+        classes.push(className);
+        console.log("it doesn't exist", classes, className);
+    }
+
+    console.log("classname", className);
+    el.className = classes.join(' ');
+}
+
+module.exports = createClock;

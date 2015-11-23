@@ -208,6 +208,12 @@ input[type=number] {
   border: 1px solid transparent; 
   cursor: pointer;  
 }
+
+.darkTheme {
+  background: #000;
+  color: #fff;
+}
+
 .close{
   cursor: pointer;
   top: -13px;
