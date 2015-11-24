@@ -1,68 +1,67 @@
 .clockContainer {
-    padding: 10px;
-    margin: 4px 10px;
-    width: 310px;
     display: inline-table;
-    border-left: 3px solid #607D8B;
-    box-shadow: 0px 0px 1px #607D8B;
+    width: 310px;
     height: 100%;
+    margin: 4px 10px;
+    padding: 10px;
+    border-left: 3px solid #607d8b;
     border-radius: 20px 2px;
-    background: #F5F5DC; 
+    background: #f5f5dc;
+    box-shadow: 0 0 1px #607d8b;
 }
 
 .clock {
-    background: #f2f2f2;
-    width: 200px;
     position: relative;
+    z-index: 1;
+    width: 200px;
     height: 200px;
-    border: 3px solid #9E9E9E;
-    border-radius: 50%;
     cursor: -webkit-grab;
-    box-shadow: 0px 0 0px black;
     color: #000;
-    /*background: url("http://www.thetruthconsortium.org/wp-content/uploads/2015/07/day-vs-night-600x360.jpg") left;*/
-    z-index: 1; 
+    border: 3px solid #9e9e9e;
+    border-radius: 50%;
+    background: #f2f2f2;
+    box-shadow: 0 0 0 black;
 }
 
 .tip {
     position: absolute;
-    background: black;
-    transform-origin: 50% 100px;
     margin: 0 98px 200px;
+    transform-origin: 50% 100px;
+    background: black;
 }
 
 .hourTip {
-    height: 8px;
     width: 4px;
+    height: 8px;
 }
 
 .hourTip span {
     position: absolute;
     top: 10px;
-    padding: -1px;
     left: -3px;
+    padding: -1px;
 }
 
 .clockContainer {
-    -webkit-user-select: none;  
-  -moz-user-select: none;    
-  -ms-user-select: none;      
-  user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .minuteTip {
-    height: 3px;
     width: 1px;
+    height: 3px;
 }
 
 .bar {
-    transform-origin: 50% bottom;
-    background: #009688;
     position: absolute;
+    z-index: 3;
     cursor: grabbing;
     cursor: -webkit-grabbing;
-    box-shadow: 0px 3px 1px #000;
-    z-index: 3; 
+    transform-origin: 50% bottom;
+    background: #009688;
+    box-shadow: 0 3px 1px #000;
 }
 
 .hourBar {
@@ -72,101 +71,82 @@
 }
 
 .minuteBar {
-    height: 70px;
     width: 4px;
+    height: 70px;
     margin: 30px 99px 74px;
 }
 
 .clockCenter {
-    height: 10px;
     position: absolute;
-    background: #607D8B;
-    margin: calc(50% - 4px);
-    width: 10px;
-    border-radius: 50%;
     z-index: 1;
-    box-shadow: 0px -1px 0px #000;
-}
-
-.one {
-    transform: rotate(30deg);
-}
-
-.tweleve {
-    transform: rotate(0deg);
-}
-
-.twoMin {
-    transform: rotate(6deg);
+    width: 10px;
+    height: 10px;
+    margin: calc(50% - 4px);
+    border-radius: 50%;
+    background: #607d8b;
+    box-shadow: 0 -1px 0 #000;
 }
 
 
 /* Controller */
 
 .controller {
-    top: 0px;
     position: absolute;
-    width: 120px;
-    /*padding: 1px;*/
-    /*background: #ccc;*/
+    top: 0;
     left: 190px;
-    /*border: 1px solid black;*/
-    /*box-shadow: 2px 3px 4px black; */
+    width: 120px;
 }
 
 .day {
-    margin: 0;
-    list-style-type: none;
     font-size: 14px;
     width: 100%;
+    margin: 0;
+    list-style-type: none;
 }
 
 ul.day {
     margin: 1px;
     padding: 1px;
-    background: #FFE4C4;
-    border-radius: 10px
+    border-radius: 10px;
+    background: #ffe4c4;
 }
 
 .day li {
-    width: 40%;
-    cursor: pointer;
     display: inline-block;
+    width: 40%;
     padding: 2px 5px;
-    border-radius: 20px;
+    cursor: pointer;
     text-align: center;
+    border-radius: 20px;
 }
 
 .day li.active {
     color: #fff;
     background: #009688;
-    box-shadow: -1px 1px 2px 0px black;
+    box-shadow: -1px 1px 2px 0 black;
 }
 
 .clockInput {
     border: 1px solid #f2f2f2;
-    /*width: 100%;*/
 }
 
 .clockInput input {
-    width: 41%;
-    padding: 3px;
-    margin: 0;
-    height: 20px;
-    line-height: 20px;
-    outline: 0; 
     font-size: 15px;
+    line-height: 20px;
+    width: 41%;
+    height: 20px;
+    margin: 0;
+    padding: 3px;
     border: 1px solid transparent;
     border-radius: 31px;
-    /*background: #F5F5DC;*/
-    
+    outline: 0;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
+    margin: 0;
     -webkit-appearance: none;
     -moz-appearance: textfield;
-    margin: 0;
 }
 
 input[type=number] {
@@ -175,32 +155,14 @@ input[type=number] {
 
 .hourInput {
     text-align: right;
-    /*outline: 9;*/
-    /*width: 22px;*/
-    /*float: left; */
 }
 
 .hourInput:after {
-    content: ":";
+    content: ':';
 }
 
 .minuteInput {
     text-align: left;
-    /*width: 25px; */
-}
-
-.open {
-    background: yellow;
-}
-
-.addClock {
-    padding: 10px;
-    width: 310px;
-    /*display: inline-table;*/
-    border-left: 3px solid #607D8B;
-    box-shadow: 0px 0px 1px #607D8B;
-    height: 100%;
-    margin: 0px 10px;
 }
 
 .clockInput input {
@@ -208,79 +170,71 @@ input[type=number] {
 }
 
 .cityInput {
-    height: 30px;
+    font-size: 15px;
+    font-weight: 900;
     width: 90%;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #f2f2f2;
     border-radius: 10px;
     outline: 0;
-    border: 1px solid #f2f2f2;
-    padding: 5px;
 }
-
-
-/*.clockContainer button {
-    height: 25px;
-    background: black;
-    color: white;
-    outline: 0;
-    border: 1px solid transparent;
-    cursor: pointer;
-}*/
 
 .darkTheme {
     background: #000;
-    /*background: url("http://www.thetruthconsortium.org/wp-content/uploads/2015/07/day-vs-night-600x360.jpg") right;*/
 }
 
 .darkTheme > .tip {
-    background: #FFEB3B;
+    background: #ffeb3b;
 }
 
 .darkTheme > .hourTip {
-    color: #FFEB3B;
+    color: #ffeb3b;
 }
+
 .darkTheme > .bar {
-    background: #FFEB3B;
+    background: #ffeb3b;
 }
 
 .close {
-    cursor: pointer;
+    position: absolute;
     top: -10px;
     left: -12px;
-    position: absolute;
-    color: rgba(255, 255, 255, 0.73);
-    background: #607D8B;
     padding: 5px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, .73);
     border-radius: 14px 0;
-    box-shadow: 2px 0px 1px 0px #666666;
+    background: #607d8b;
+    box-shadow: 2px 0 1px 0 #666;
 }
 
 .location {
-    left: 25%;
-    top: 62%;
+    font-family: cursive;
+    font-weight: 900;
     position: absolute;
-    color: #8BC34A;
     z-index: 2;
+    top: 62%;
+    left: 25%;
     width: 100px;
     text-align: center;
-    font-weight: 900;
-    font-family: cursive;
-    background: rgba(255,255,255,0.16);
-    border-radius: 10px
+    color: #8bc34a;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .16);
 }
 
 button.currentTime {
+    font-size: 13px;
     position: absolute;
+    top: 170px;
     left: 10px;
     width: 100px;
-    top: 170px;
+    padding: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
     border-radius: 20px;
     outline: 0;
     background: #009688;
-    color: white;
-    font-size: 13px;
-    padding: 5px;
-    cursor: pointer;
-    text-transform: uppercase; 
 }
 
 
@@ -288,15 +242,6 @@ button.currentTime {
 
 input:required:invalid,
 input:focus:invalid {
-    /* insert your own styles for invalid form input */
+    border-bottom: 2px solid #c36;
     -moz-box-shadow: none;
-    border-bottom: 2px solid #CC3366;
-}
-
-
-
-@media all and (max-width: 430px) {
-    .clockContainer {
-        width: 90%;
-    }
 }

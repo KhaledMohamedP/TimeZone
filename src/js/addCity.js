@@ -35,10 +35,6 @@ function getTimeZone(lat, lng, city) {
 }
 
 
-
-
-
-
 window.loadGoogleAPi = function() {
     var autocomplete = new window.google.maps.places.Autocomplete(
         (cityAutocompleteInput), {
@@ -58,10 +54,16 @@ window.loadGoogleAPi = function() {
 
 
 function loadScript() {
+     var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
+    script.type = 'text/javascript';
     script.src =
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places&callback=loadGoogleAPi';
-    document.body.appendChild(script);
+    head.appendChild(script);
 }
 
 window.onload = loadScript;
+
+module.exports = {
+    getTimeZone: getTimeZone
+};
