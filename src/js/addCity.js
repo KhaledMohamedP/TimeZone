@@ -19,7 +19,7 @@ function getTimeZone(lat, lng, city) {
             setTimeout(function() {
                 cityAutocompleteInput.value = '';
                 cityAutocompleteInput.focus();
-            }, 10);
+            }, 50);
         } else {
             console.log('something wrong with status');
             // We reached our target server, but it returned an error
@@ -34,10 +34,7 @@ function getTimeZone(lat, lng, city) {
     request.send();
 }
 
-// var script = document.createElement('script');
-// script.src =
-//     'https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places&callback=loadGoogleAPi';
-// document.body.appendChild(script);
+
 
 
 
@@ -57,3 +54,14 @@ window.loadGoogleAPi = function() {
 
     autocomplete.addListener('place_changed', findTimeZone);
 };
+
+
+
+function loadScript() {
+    var script = document.createElement('script');
+    script.src =
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places&callback=loadGoogleAPi';
+    document.body.appendChild(script);
+}
+
+window.onload = loadScript;

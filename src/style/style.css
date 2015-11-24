@@ -7,6 +7,7 @@
     box-shadow: 0px 0px 1px #607D8B;
     height: 100%;
     border-radius: 20px 2px;
+    background: #F5F5DC; 
 }
 
 .clock {
@@ -42,8 +43,11 @@
     left: -3px;
 }
 
-.hourTip span::selection {
-    background: transparent;
+.clockContainer {
+    -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 
 .minuteTip {
@@ -120,6 +124,8 @@
 ul.day {
     margin: 1px;
     padding: 1px;
+    background: #FFE4C4;
+    border-radius: 10px
 }
 
 .day li {
@@ -134,22 +140,26 @@ ul.day {
 .day li.active {
     color: #fff;
     background: #009688;
+    box-shadow: -1px 1px 2px 0px black;
 }
 
 .clockInput {
     border: 1px solid #f2f2f2;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .clockInput input {
-    width: 43%;
-    padding: 0;
+    width: 41%;
+    padding: 3px;
     margin: 0;
     height: 20px;
-    outline: 0;
-    border: 1px solid transparent;
     line-height: 20px;
+    outline: 0; 
     font-size: 15px;
+    border: 1px solid transparent;
+    border-radius: 31px;
+    /*background: #F5F5DC;*/
+    
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -234,12 +244,14 @@ input[type=number] {
 
 .close {
     cursor: pointer;
-    top: -13px;
-    left: 0px;
+    top: -10px;
+    left: -12px;
     position: absolute;
     color: rgba(255, 255, 255, 0.73);
     background: #607D8B;
     padding: 5px;
+    border-radius: 14px 0;
+    box-shadow: 2px 0px 1px 0px #666666;
 }
 
 .location {
@@ -258,16 +270,17 @@ input[type=number] {
 
 button.currentTime {
     position: absolute;
-    left: 20px;
-    width: 103px;
+    left: 10px;
+    width: 100px;
     top: 170px;
     border-radius: 20px;
     outline: 0;
     background: #009688;
     color: white;
-    font-size: 17px;
+    font-size: 13px;
     padding: 5px;
     cursor: pointer;
+    text-transform: uppercase; 
 }
 
 
@@ -277,5 +290,13 @@ input:required:invalid,
 input:focus:invalid {
     /* insert your own styles for invalid form input */
     -moz-box-shadow: none;
-    border-bottom: 1px solid #CC3366;
+    border-bottom: 2px solid #CC3366;
+}
+
+
+
+@media all and (max-width: 430px) {
+    .clockContainer {
+        width: 90%;
+    }
 }
