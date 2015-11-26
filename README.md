@@ -1,7 +1,8 @@
 # TimeZone
 Tell the difference between two/more timezones
 
-
+Making the clock coordination was a bit tricky at first 
+The plan: 
 ```            
 
             |4
