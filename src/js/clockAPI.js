@@ -1,3 +1,6 @@
+// TODO - Hour bar move along minute bar 
+//  var itWasHereMomentAgo = false; 
+
 function removeClass(el, className) {
     var classes = el.className.split(' ');
     var existingIndex = classes.indexOf(className);
@@ -58,13 +61,19 @@ module.exports = {
         /*
             Change the hour when we reach 0 
             This cause whole lot of mess when the mouse is stock in 0 
-        */ 
+        */
        
-        // if(hourBarPrgress == 0){
-        //     hrDegrees += 30; 
-        //     hourInput.value = hrDegrees / 30; 
-        // }
-        
+            // TODO - Hour bar move along minute bar 
+            // if (hourBarPrgress === 0 && !itWasHereMomentAgo) {
+            //     itWasHereMomentAgo = true; 
+            //     hrDegrees += 30;
+            //     hourInput.value = hrDegrees / 30;
+            //     setTimeout(function() {
+            //         itWasHereMomentAgo = false; 
+            //     }, 500);
+            //     //Avoid changing clock quickly
+            // }
+
         var nextHourDegree = hrDegrees + hourBarPrgress;
         return nextHourDegree;
     }

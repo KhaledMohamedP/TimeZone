@@ -87,7 +87,7 @@ var data =  {
             // Get timezone time 
             var time = defaultTime.clone().tz(elm.timezone);
             var hour = time.format('h');
-            var minute = time.format('m');
+            var minute = time.format('mm');
             var amPm = time.format('a');
 
             clockAPI.setTime(elm.dom, hour, minute);

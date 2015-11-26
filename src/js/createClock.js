@@ -129,7 +129,7 @@ function createClock(clockDom) {
         var hourDegree = inDegrees + 30;
         hourBar.style.transform = "rotate(" + hourDegree + "deg)";
         hourInput.value = hourDegree / 30;
-        // clockAPI.setTime(clockDom, hourInput.value , minuteInput.value)
+
     }
 
     // mousemove clock function 
@@ -144,9 +144,14 @@ function createClock(clockDom) {
         var minuteDegrees = inDegrees + 6;
 
         minuteBar.style.transform = "rotate(" + minuteDegrees + "deg)";
-        minuteInput.value = minuteDegrees / 6 % 60;
+        var minuteValue = minuteDegrees / 6 % 60;
 
-        // clockAPI.setTime(clockDom, hourInput.value , minuteInput.value)
+        // 0 - 9 print with two digits 00, 01 , 02 ...
+        minuteValue = minuteValue < 10 ? ("0"+minuteValue): minuteValue;
+        minuteInput.value = minuteValue;
+        
+        // TODO - Hour bar move along minute bar 
+        // clockAPI.setTime(clockDom, hourInput.value , minuteInput.value);
 
     }
 
