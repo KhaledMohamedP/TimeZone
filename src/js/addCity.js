@@ -4,7 +4,7 @@ var database = require("./data.js");
 var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
 var parsedCachedDatabase = JSON.parse(cachedDatabase);
 // First load
-for (var i = 0; i < cachedDatabase.length; i++) {
+for (var i = 0; i < parsedCachedDatabase.length; i++) {
     database.addTimeZone(cachedDatabase[i].id, cachedDatabase[i].name);
 }
 
