@@ -1,8 +1,8 @@
 # TimeZone
-Tell the difference between two timezones
+Tell the difference between two/more timezones
 
 
-            
+```            
 
             |4
             |3
@@ -14,28 +14,30 @@ Tell the difference between two timezones
             |-3
             |-4
 
-our div 
----------------------				  
-|123456 7 891011121314|
-|				             |
-|				             |
-|				             |
-|				             |
----------------------
+ClockDiv
+----------	 
+|        | 
+|12345678| 
+|   ^    |
+----------
 
 so in order to know our axis in the graph from our div property 
-14/2 = 7 
+9/2 = 4
 
-
-7-7 = 0 
-6-7 = -1 good 
-
-so we divide the horizantal to 
-
-
-
-------
-getHour 
-0-30 
-5-30
-30 / 30 = 0 
+middle 
+4-4 = 0 
+ClockDiv
+----------   
+|        | 
+|12345678| 
+|   0    |
+----------
+thus, 
+6-4 = 2 good 
+----------   
+|        | 
+|12345678| 
+|   ^^^  |
+|   012  | 
+----------
+```
