@@ -72,7 +72,7 @@ function createClock(clockDom) {
     timeNow.onclick = function (e) {
         var timezone = clockDom.getAttribute("data-timezone"); 
         var time = moment(new Date()).tz(timezone); 
-        clockAPI.setTime(clockDom, time.format("h"), time.format("m"));
+        clockAPI.setTime(clockDom, time.format("h"), time.format("mm"));
         clockAPI.setAmPm(clockDom, time.format('a'));
         update();
     };

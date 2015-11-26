@@ -1,6 +1,14 @@
 var database = require("./data.js");
 
-// function initAutoComplete() {
+// Caching  
+var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
+var parsedCachedDatabase = JSON.parse(cachedDatabase);
+// First load
+for (var i = 0; i < cachedDatabase.length; i++) {
+    database.addTimeZone(cachedDatabase[i].id, cachedDatabase[i].name);
+}
+
+
 var cityAutocompleteInput = document.getElementById('cityAutocomplete');
 
 function getTimeZone(lat, lng, city) {
@@ -15,6 +23,17 @@ function getTimeZone(lat, lng, city) {
             // Success!
             var TimeZone = JSON.parse(request.responseText);
             database.addTimeZone(TimeZone.timeZoneId, city);
+
+            // Timezone database 
+            var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
+            var parsedCachedDatabase = JSON.parse(cachedDatabase);
+            parsedCachedDatabase.push({
+                id: TimeZone.timeZoneId,
+                name: city
+            });
+
+            window.localStorage.setItem("TimeZoneObjCached", JSON.stringify(parsedCachedDatabase));
+
             cityAutocompleteInput.blur();
             setTimeout(function() {
                 cityAutocompleteInput.value = '';
@@ -54,7 +73,7 @@ window.loadGoogleAPi = function() {
 
 
 function loadScript() {
-     var head = document.getElementsByTagName('head')[0];
+    var head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src =

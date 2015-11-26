@@ -1,36 +1,56 @@
 var addClock = require("./addClock.js");
 var clockAPI = require("./clockAPI.js");
 
+
 // List of object {
 //                 domElment: domeElment , 
 //                 timezone: momentJSObject 
+
+
+// Retrieve cached database or create a new one; 
 var database = [],
     defaultIndex = 0;
 
-module.exports = {
-    addTimeZone: function(timeZoneId, city) {
+var data =  {
+    addTimeZone: function(timeZoneId, cityName) {
         var time = moment(new Date()).tz(timeZoneId);
         var hour = time.format('h');
-        var minute = time.format('m');
+        var minute = time.format('mm');
         var amPm = time.format('a');
-        var clock = addClock(hour, minute, amPm, city);
+        var clock = addClock(hour, minute, amPm, cityName);
         clock.setAttribute('data-index', database.length);
         clock.setAttribute('data-timezone', timeZoneId);
-
+        
+        // Model & View
         database.push({
             dom: clock,
             timezone: timeZoneId
         });
+
+
+        // Render the view
+        this.update();
     },
     removeTimeZone: function(id) {
+        var timeZoneId = database[id].timezone;
         database[id].dom.remove();
         database[id] = undefined;
+
+        // Remove from cached data 
+        var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
+        cachedDatabase = JSON.parse(cachedDatabase);
+        var index = cachedDatabase.indexOf(timeZoneId);
+        cachedDatabase.splice(index, 1);
+        window.localStorage.setItem("TimeZoneObjCached", JSON.stringify(cachedDatabase));
+
+        // Change default
+        defaultIndex = defaultIndex === id ? 0:defaultIndex;
+
     },
     update: function() {
         if (database <= 0 || isNaN(defaultIndex)) {
             return;
         }
-
         var databaseCopy = database.concat([]);
         var defaultClock = databaseCopy[defaultIndex];
         var dateObj = {
@@ -82,3 +102,6 @@ module.exports = {
 
     }
 };
+
+
+module.exports = data;
