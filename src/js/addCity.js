@@ -1,8 +1,8 @@
 var database = require("./data.js");
 
 // Caching  
-var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
-var parsedCachedDatabase = JSON.parse(cachedDatabase);
+var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached");
+var parsedCachedDatabase = JSON.parse(cachedDatabase) || [];
 // First load
 for (var i = 0; i < parsedCachedDatabase.length; i++) {
     database.addTimeZone(parsedCachedDatabase[i].id, parsedCachedDatabase[i].name);
@@ -10,6 +10,8 @@ for (var i = 0; i < parsedCachedDatabase.length; i++) {
 
 
 var cityAutocompleteInput = document.getElementById('cityAutocomplete');
+var loadingGif = document.getElementById('loading');
+
 
 function getTimeZone(lat, lng, city) {
     var latLng = lat + ',' + lng;
@@ -25,8 +27,8 @@ function getTimeZone(lat, lng, city) {
             database.addTimeZone(TimeZone.timeZoneId, city);
 
             // Timezone database 
-            var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
-            var parsedCachedDatabase = JSON.parse(cachedDatabase);
+            var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached");
+            var parsedCachedDatabase = JSON.parse(cachedDatabase) || [];
             parsedCachedDatabase.push({
                 id: TimeZone.timeZoneId,
                 name: city
@@ -39,6 +41,9 @@ function getTimeZone(lat, lng, city) {
                 cityAutocompleteInput.value = '';
                 cityAutocompleteInput.focus();
             }, 50);
+
+            loadingGif.style.display = 'none';
+
         } else {
             console.log('something wrong with status');
             // We reached our target server, but it returned an error
@@ -61,6 +66,7 @@ window.loadGoogleAPi = function() {
         });
 
     function findTimeZone() {
+        loadingGif.style.display = '';
         var place = autocomplete.getPlace();
         var lng = place.geometry.location.lng();
         var lat = place.geometry.location.lat();
@@ -79,6 +85,9 @@ function loadScript() {
     script.src =
         'https://maps.googleapis.com/maps/api/js?key=AIzaSyDm5N1VOb1DflM9ZDrjX_0BA3ATIRlwDaw&signed_in=true&libraries=places&callback=loadGoogleAPi';
     head.appendChild(script);
+    cityAutocompleteInput.parentNode.style.display = '';
+    loadingGif.style.display = 'none';
+
 }
 
 window.onload = loadScript;

@@ -13,12 +13,14 @@
         <p>see what time is it in other cities and adjust the time to see the changes in affect.</p>
     </section>
     <section>
-        <div class="clockContainer">
+        <div class="clockContainer" style="display: none;">
             <input id="cityAutocomplete" class="cityInput" type="text" placeholder="Search for the city name" autofocus>
+        <image id="loading" style="float:right; padding: 5px 0 0 0; " src="images/loading.GIF"></image>
         </div>
         <div class="clockView"></div>
     </section>
 </body>
+
 <!-- import MomentJS Library -->
 <script src="lib/moment.min.js"></script>
 <script src="lib/moment-timezone-with-data.min.js"></script>
