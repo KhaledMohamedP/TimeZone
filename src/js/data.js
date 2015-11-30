@@ -34,7 +34,6 @@ var data =  {
     removeTimeZone: function(id) {
         var timeZoneId = database[id].timezone;
         database[id].dom.remove();
-        database[id] = undefined;
 
         // Remove from cached data 
         var cachedDatabase = window.localStorage.getItem("TimeZoneObjCached"); 
@@ -48,11 +47,15 @@ var data =  {
 
     },
     update: function() {
-        if (database <= 0 || isNaN(defaultIndex)) {
+        if (database.length <= 0 || isNaN(defaultIndex) || typeof database[defaultIndex] == "undefined" ) {
             return;
         }
+
         var databaseCopy = database.concat([]);
         var defaultClock = databaseCopy[defaultIndex];
+        console.log("defaultIndex", defaultIndex);
+        console.log("database", database);
+
         var dateObj = {
             hour: defaultClock.dom.getElementsByClassName('hourInput')[0].value,
             minute: defaultClock.dom.getElementsByClassName('minuteInput')[0].value
