@@ -1,6 +1,10 @@
 # TimeZone
-Tell the difference between two/more timezones
+Tell the difference between two/more timezones. The clock is built with JS, CSS only (no images,svg...) 
 
+# Demo 
+[Demo](http://khaledm.com/projects/TimeZone/) 
+
+# Sketching (plan)
 Making the clock coordination was a bit tricky at first 
 The plan: 
 ```            
@@ -16,7 +20,7 @@ The plan:
             |-4
 
 ClockDiv
-----------	 
+----------   
 |        | 
 |12345678| 
 |   ^    |
@@ -42,3 +46,6 @@ thus,
 |   012  | 
 ----------
 ```
+
+Used google autocomplete and timezone api (for accuracy)
+Used MomentJS
