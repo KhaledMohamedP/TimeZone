@@ -53,8 +53,6 @@ var data =  {
 
         var databaseCopy = database.concat([]);
         var defaultClock = databaseCopy[defaultIndex];
-        console.log("defaultIndex", defaultIndex);
-        console.log("database", database);
 
         var dateObj = {
             hour: defaultClock.dom.getElementsByClassName('hourInput')[0].value,
