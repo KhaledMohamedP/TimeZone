@@ -47,7 +47,7 @@ var data =  {
 
     },
     update: function() {
-        if (database.length <= 0 || isNaN(defaultIndex) || typeof database[defaultIndex] == "undefined" ) {
+        if (database.length <= 0 || isNaN(defaultIndex) || typeof database[defaultIndex] === "undefined" ) {
             return;
         }
 
